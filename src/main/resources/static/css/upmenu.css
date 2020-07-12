@@ -1,0 +1,10 @@
+.upmenu {
+    display:flex;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+.upmenu i {
+    opacity: 0.7;
+    margin:5px;
+}

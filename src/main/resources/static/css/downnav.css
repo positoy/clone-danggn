@@ -1,0 +1,18 @@
+.downnav {
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    bottom: 0px;
+    padding : 10px 20px;
+    border-top : 1px solid #555555;
+}
+
+.downnav .downnav__list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.downnav i {
+    font-size: 20px;
+    padding: 5px;
+}

@@ -1,0 +1,9 @@
+.contents {
+    font-size: 20px;
+}
+
+.contents .contents__pictures i{
+    font-size: 35px;
+    border: solid 1px black;
+    padding: 40px;
+}
