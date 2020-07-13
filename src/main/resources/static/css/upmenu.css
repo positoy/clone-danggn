@@ -1,7 +1,7 @@
 .upmenu {
-    display:flex;
     justify-content: space-between;
     font-size: 20px;
+    color: red;
 }
 
 .upmenu i {
