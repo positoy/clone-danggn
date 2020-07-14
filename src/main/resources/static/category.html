@@ -8,28 +8,62 @@
     <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-    <div class="upmenu">
-        <div class="upmenu__column"><i class="fas fa-chevron-left"></i></div>
+    <div class="upmenu" id="bottom_bar">
         <div class="upmenu__column">
-            <span>search query here</span>
+            <span id="title">카테고리</span>
+        </div>
+        <div class="upmenu__column">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-bell"></i>
         </div>
     </div>
     <div class="contents">
-        <nav class="upnav">
-            <ul class="upnav__list">
-                <li class="upnav__list__item">중고거래</li>
-                <li class="upnav__list__item">동네정보</li>
-                <li class="upnav__list__item">사람</li>
+        <div class="contents__service">
+            <div class="contents__title">우리동네 서비스</div>
+            <ul class="contents__service__list">
+                <list class="contents__service__list__item">클래스</list>
+                <list class="contents__service__list__item">속눈썹</list>
+                <list class="contents__service__list__item">에어컨</list>
+                <list class="contents__service__list__item">중고차</list>
+                <list class="contents__service__list__item">용달</list>
+                <list class="contents__service__list__item">네일</list>
+                <list class="contents__service__list__item">이사</list>
+                <list class="contents__service__list__item">인테리어</list>
+                <list class="contents__service__list__item">자동차</list>
             </ul>
-        </nav>
-        <div class="contents__category">
-            <span>카테고리</span>
+            <div class="contents__service__more">우리동네 서비스 더 찾아보기</div>
         </div>
-        <div class="contents__hotkeywords">
-            <span>인기 검색어</span>
+        <div class="contents__market">
+            <div class="contents__title">중고거래</div>
+            <ul class="contents__market__list">
+                <list class="contents__market__list__item"><img src="img/icon_diamond.png" width="50px" height="50px">인기매물</list>
+                <list class="contents__market__list__item">디지털/가전</list>
+                <list class="contents__market__list__item">가구/인테리어</list>
+                <list class="contents__market__list__item">유아동/유아도서</list>
+                <list class="contents__market__list__item">생활/가공식품</list>  
+                <list class="contents__market__list__item">스포츠/레저</list>
+                <list class="contents__market__list__item">여성잡화</list>
+                <list class="contents__market__list__item">여성의류</list>
+                <list class="contents__market__list__item">남성패션/잡화</list>
+                <list class="contents__market__list__item">게임/취미</list>
+                <list class="contents__market__list__item">뷰티/미용</list>
+                <list class="contents__market__list__item">반려동물용품</list>
+                <list class="contents__market__list__item">음반</list>
+                <list class="contents__market__list__item">기타 중고물품</list>
+                <list class="contents__market__list__item">삽니다</list>
+            </ul>
         </div>
-        <div class="contents__localtrend">
-            <span>권선동 근처 인기매물</span>
+        <div class="contents__advertise">
+            <div class="contents__title">동네홍보</div>
+            <ul class="contents__advertise__list">
+                <list class="contents__advertise__list__item"><img src="img/icon_car.png" width="50px" height="50px">중고차/오토바이</list>
+                <list class="contents__advertise__list__item">동네 구인구직</list>
+                <list class="contents__advertise__list__item">부동산</list>
+                <list class="contents__advertise__list__item">농수산물</list>
+                <list class="contents__advertise__list__item">지역업체 소개</list>
+                <list class="contents__advertise__list__item">과외/클래스 모집</list>
+                <list class="contents__advertise__list__item">전시/공연/행사</list>
+            </ul>
         </div>
     </div>
     <!-- contents go in here -->

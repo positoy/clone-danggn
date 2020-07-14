@@ -8,35 +8,51 @@
     <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-    <div class="upmenu">
-        <div class="upmenu__column"><i class="fas fa-chevron-left"></i></div>
+    <div class="upmenu" id="bottom_bar">
         <div class="upmenu__column">
-            <span>중고거래 글쓰기</span>
+            <i class="fas fa-arrow-left"></i>
+            <span id="title">중고거래 글쓰기</span>
         </div>
         <div class="upmenu__column">
-            <span>완료</span>
+            <span id ="complete_button">완료</span>
         </div>
     </div>
     <div class="contents">
+        
         <div class="contents__pictures">
-            <i class="fas fa-camera"></i>
+            <div class="contents__pictures__item">
+                <i class="fas fa-camera"></i>
+                <div>0/10</div>
+            </div>
         </div>
-        <div class="contents__title">
-            <h3>제목</h3>
-        </div>
-        <div class="contents__category">
-            <h3>카테고리</h3>
-        </div>
-        <div class="contents__price">
-            <div class="price__input"><span>가격(선택사항)</span></div>
-            <div class="price__input"><span>가격제안 받기</span></div>
-        </div>
-        <div class="contents__description">
-            <span>권선동에 올릴 게시글 내용을 작성해주세요. 가품 및 판매금지품목은 게시가 제한될 수 있어요.</span>
-        </div>
-        <div class="contents__adjacentarea">
-            <span>권선동과 근처 동네 26개</span>
-        </div>
+        <form action="/pictures" method="post" enctype="multipart/form-data">
+            <input type="file" name="filename" id="filename">
+        </form>
+        <from action="/goods" method="post">
+            <input type="text" onfocus="this.placeholder=''" onblur="this.placeholder='제목'" placeholder="제목" name="title" id="title"><br/>
+            <hr>
+            <select name="category" id="category">
+                <option value="디지털/가전">디지털/가전</option>
+                <option value="가구/인테리어">가구/인테리어</option>
+                <option value="유아동/유아도서">유아동/유아도서</option>
+                <option value="생활/가공식품">생활/가공식품</option>
+                <option value="스포츠/레저">스포츠/레저</option>
+                <option value="여성잡화">여성잡화</option>
+                <option value="여성의류">여성의류</option>
+                <option value="남성패션/잡화">남성패션/잡화</option>
+                <option value="게임/취미">게임/취미</option>
+                <option value="뷰티/미용">뷰티/미용</option>
+                <option value="반려동물용품">반려동물용품</option>
+                <option value="도서/티켓/음반">도서/티켓/음반</option>
+                <option value="기타 중고물품">기타 중고물품</option>
+                <option value="삽니다">삽니다</option>
+            </select>
+            <hr>
+            <input type="text" onfocus="this.placeholder=''" onblur="this.placeholder='&#8361; 가격 (선택사항)'" placeholder="&#8361; 가격 (선택사항)" name="price" id="price">
+            <hr>
+            <textarea onfocus="this.value=''" name="body" id="body">권선동에 올릴 게시글 내용을 작성해주세요. 가품 및 판매금지품목은 게시가 제한될 수 있어요.</textarea><br/>
+        </from>
+
         <nav class="downnav">
             <ul class="downnav__list">
                 <li class="downnav__list__item"><a href="/home.html">

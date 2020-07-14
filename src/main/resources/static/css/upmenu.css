@@ -8,9 +8,19 @@
     font-size: 25px;
     z-index: 10;
 }
-
+.upmenu#bottom_bar {
+    border-bottom: solid 1px #dddddd;
+}
 .upmenu .upmenu__column {
     padding: 10px;
+}
+
+.upmenu .upmenu__column #title {
+    margin-left: 10px;
+}
+
+.upmenu .upmenu__column #complete_button {
+    font-size: 20px;
 }
 
 .upmenu span {
