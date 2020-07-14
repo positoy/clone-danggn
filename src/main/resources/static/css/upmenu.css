@@ -9,9 +9,11 @@
     font-size: 1.25em;
     font-weight: bold;
     z-index: 10;
-    background: white;
 }
 .upmenu#with_bottom_bar {
+    border-bottom: solid 1px #dddddd;
+}
+.upmenu#chat_with_bottom_bar {
     border-bottom: solid 1px #dddddd;
     background-color: white;
 }
