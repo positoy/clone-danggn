@@ -8,7 +8,7 @@
     font-size: 25px;
     z-index: 10;
 }
-.upmenu#bottom_bar {
+.upmenu#with_bottom_bar {
     border-bottom: solid 1px #dddddd;
 }
 .upmenu .upmenu__column {
