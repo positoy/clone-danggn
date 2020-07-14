@@ -1,122 +1,106 @@
 .contents {
-    position: fixed;
-    left: 0px;
-    top: 40px;
-    padding: 10px;
+    padding: 0;
     width: 100%;
-    height: 100%-120px;
+}
+
+.contents .empty {
+    width: 100%;
+    height: 3em;
 }
 
 .contents .contents__title {
-    font-size: 19px;
+    padding-top: 1em;
+    padding-left: 1em;
+    font-size: 1.1em;
     font-weight: bold;
-    margin-top: 20px;
-    padding: 10px;
 }
 
 .contents .contents__service__list {
-    padding: 10px;
+    padding: 1em;
+    font-size: 0.9em;
 }
 
 .contents .contents__service__list__item {
     border: solid 1px #dddddd;
-    border-radius: 40%;
-    padding: 5px 15px;
-    margin-right: 18px;
-    line-height: 40px;
-    font-size: 18px;
+    border-radius: 1em;
+    padding: 0.25em 1em;
+    margin-right: 1em;
+    line-height: 3em;
 }
 
-.contents .contents__service__more {
-    width: 100%;
-    text-align: center;
+.contents .contents__service__more {    
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
     border-top: solid 1px #dddddd;
     border-bottom: solid 1px #dddddd;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    font-size: 17;
+    font-size: 0.9em;
     font-weight: bold;
+    text-align: center;
     color: #009973;
 }
 
 .contents .contents__market__list {
-    padding: 10px;
+    padding: 1em;
+    font-size: 1em;
+    line-height: 2.5em;
+    border-bottom: solid 7px #efefef;
 }
 
 .contents .contents__market__list__item {
-    margin-top: 20px;
-    font-size: 18px;
     display: block;
 }
 
 .contents .contents__advertise__list {
-    padding: 10px;
+    padding: 1em;
+    font-size: 1em;
+    line-height: 2.5em;
 }
 
 .contents .contents__advertise__list__item {
-    margin-top: 20px;
-    font-size: 18px;
     display: block;
 }
 .contents .contents__pictures {
-    padding: 10px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 1em;
     border-bottom: solid 1px #dddddd;
-    margin-bottom: 10px;
 }
 .contents .contents__pictures__item {
-    width: 100px;
-    height: 100px;
+    width: 6em;
+    height: 6em;
     border: solid 1px #dddddd;
-    color: #dddddd;
-    border-radius: 5%;
-    padding: 30px;
+    color: #777777;
+    border-radius: 0.25em;
+    padding: 2em;
     text-align: center;
 }
 .contents .contents__pictures__item i{
-    font-size: 25px;
+    font-size: 1.5em;
 }
 
 .contents input {
     width: 100%;
-    font-size: 18px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border: 0px;
+    padding: 0.75em;
+    border: 0;
+    font-size: 1em;
 }
 
-.contents select#category {
+.contents select {
     width: 100%;
-    font-size: 18px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border: 0px;
-    color: #909090;
+    padding: 0.75em;
+    border: 0;
+    font-size: 1em;
+    color: #dddddd;
+    background-color: white;
 }
 
-.contents select:focus {
-    outline: none;
-}
-
-.contents option:first-child {
-    display:none;
-}
-
-.contents input:focus {
-    outline: none !important;
-}
 .contents textarea {
     width: 100%;
-    font-size: 18px;
-    line-height: 1.5em;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border: 0px;
+    height: 14em;
+    border: 0;
+    font-size: 1.25em;
+    line-height: 1.25em;
+    padding: 0.75em;
 }
-.contents textarea:focus {
-    outline: none !important;
-}
+
 .contents input#filename {
     display: none;
 }
@@ -132,43 +116,43 @@
 .contents .contents__list .contents__list__item {
     display: flex;
     justify-content: space-between;
-    padding: 15px;
+    padding: 1em;
     border-bottom: solid 1px #eeeeee;
 }
 
 .contents .contents__list .contents__list__item__img {
-    border-radius: 5%;
-    width: 120px;
-    height: 120px;
+    border-radius: 0.25em;
+    width: 6em;
+    height: 6em;
 }
 
 .contents .contents__list .contents__list__item__description {
     width: 100%;
-    padding: 10px;
-    margin-left: 10px;
+    padding: 0.3em;
+    margin-left: 1em;
 }
 
 .contents .contents__list .contents__list__item__description .title {
-    padding-bottom: 15px;
-    font-size: 17px;
+    font-size: 1.1em;
 }
 
 .contents .contents__list .contents__list__item__description .areatime {
-    padding-bottom: 15px;
-    font-size: 15px;
+    padding-top:0.3em;
+    font-size: 0.9em;
     color: #909090;
 }
 
 .contents .contents__list .contents__list__item__description .price {
-    padding-bottom: 15px;
-    font-size: 15px;
+    padding-top: 0.5em;
+    font-size: 0.9em;
     font-weight: bold;
 }
 
 .contents .contents__list .contents__list__item__description .chatliked {
+    padding-top: 0.5em;
     float: right;
 }
 .contents .contents__list .contents__list__item__description .chatliked i {
     color: #777777;
-    margin-left: 5px;
+    margin-left: 0.5em;
 }

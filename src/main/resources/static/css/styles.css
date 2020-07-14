@@ -3,19 +3,26 @@
 @import "upnav.css";
 @import "downnav.css";
 @import "contents.css";
-@import "itempicture.css";
+@import "item.css";
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
 
 * {
     box-sizing: border-box;
 }
 
-a {
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
     text-decoration: none;
+    color: inherit;
 }
 
-a:hover {
-    text-decoration: none;
+select:focus,
+input:focus,
+textarea:focus {
+    outline: none !important;
 }
 
 body {

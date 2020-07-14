@@ -1,17 +1,19 @@
+.upnav {
+    width: 100%;
+    font-size: 1em;
+}
+
 .upnav .upnav__list {
     display: flex;
     justify-content: space-between;
 }
 
 .upnav .upnav__list__item {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
     width: 100%;
-    font-size: 20px;
+    padding: 1em;
+    border-bottom: solid 1px #c0c0c0;
     text-align: center;
     color: #c0c0c0;
-    border-bottom: solid 1px #c0c0c0;
 }
 
 .upnav .upnav__list__item.selected {

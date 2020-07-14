@@ -8,57 +8,64 @@
     <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-    <div class="upmenu">
-        <div class="upmenu__column"><i class="fas fa-arrow-left"></i></div>
+    <div class="upmenu" id="item">
+        <div class="upmenu__column">
+            <i class="fas fa-arrow-left"></i>
+        </div>
         <div class="upmenu__column">
             <i class="fas fa-share-alt"></i>
             <i class="fas fa-ellipsis-v"></i>
         </div>
     </div>
-    <div class="itempicture">
-        <img src="img/001.png">
-        <ul class="itempicture__list">
-            <li class="itempicture__list__item"><i class="fas fa-circle"></i></li>
-            <li class="itempicture__list__item"><i class="fas fa-circle"></i></li>
-            <li class="itempicture__list__item"><i class="fas fa-circle"></i></li>
-            <li class="itempicture__list__item"><i class="fas fa-circle"></i></li>
-        </ul>
+    <div class="contents">
+        <div class="itempicture">
+            <img src="img/001_1.jpg">
+            <ul class="itempicture__list">
+                <li class="itempicture__list__item"><i class="fas fa-circle"></i></li>
+                <li class="itempicture__list__item"><i class="fas fa-circle"></i></li>
+                <li class="itempicture__list__item"><i class="fas fa-circle"></i></li>
+                <li class="itempicture__list__item"><i class="fas fa-circle"></i></li>
+            </ul>
+        </div>
+        <div class="userinfo">
+            <div class="userinfo__column">
+                <div class="userinfo__column__picture">
+                    <i class="far fa-smile"></i>
+                </div>
+            </div>
+            <div class="userinfo__column">
+                <div class="userinfo__nameaddr__name">별하박</div>
+                <div class="userinfo_nameaddr__addr">수원시 영통구 영통2동</div>
+            </div>
+            <div class="userinfo__column">
+                <img src="img/mannertmep_368.jpeg">
+            </div>
+        </div>
+        <div class="goodsinfo">
+            <div class="goodsinfo__title">라오스 다이어리</div>
+            <div class="goodsinfo__categorytimestamp">디지털/가전 · 끌올 37분 전</div>
+            <div class="goodsinfo__body">
+                삼성 무선청소기 새 배터리 판매합니다~ 센터에서 20만원에 판매되고 있습니다. 구매 영수증 원하시면 확인해드릴 수 있습니다 ^^ 올 5월 말일날 구매했습니다~
+            </div>
+        </div>
     </div>
-
-    <!-- contents go in here -->
-    <nav class="downnav">
-        <ul class="downnav__list">
-            <li class="downnav__list__item"><a href="/home.html">
-                <div class="downnav__list__item__menubox">
-                    <i class="fas fa-home"></i>
-                    <div class="downnav__list__item__menubox__name">홈</div>
-                </div>
-            </a></li>
-            <li class="downnav__list__item"><a href="/category.html">
-                <div class="downnav__list__item__menubox">
-                    <i class="fas fa-bars"></i>
-                    <div class="downnav__list__item__menubox__name">카테고리</div>
-                </div>
-            </a></li>
-            <li class="downnav__list__item"><a href="/write.html">
-                <div class="downnav__list__item__menubox">
-                    <i class="fas fa-pencil-alt"></i>
-                    <div class="downnav__list__item__menubox__name">글쓰기</div>
-                </div>
-            </a></li>
-            <li class="downnav__list__item"><a href="/chat.html">
-                <div class="downnav__list__item__menubox">
-                    <i class="far fa-comments"></i>
-                    <div class="downnav__list__item__menubox__name">채팅</div>
-                </div>
-            </a></li>
-            <li class="downnav__list__item"><a href="/user.html">
-                <div class="downnav__list__item__menubox">
-                    <i class="far fa-user"></i>
-                    <div class="downnav__list__item__menubox__name">나의 당근</div>
-                </div>
-            </a></li>
-        </ul>
+    <nav class="downnav" id="item_downnav">
+        <div class="downnav__column">
+            <div class="like">
+                <i class="far fa-heart"></i>
+            </div>
+        </div>
+        <div class="downnav__column">
+            <div class="price">
+                <div class="price__price">190,000원</div>
+                <div class="price__suggest">가격 제안하기</div>
+            </div>
+        </div>
+        <div class="downnav__column">
+            <div class="askchat">
+                <span>채팅으로 거래하기</span>
+            </div>
+        </div>
     </nav>
 </body>
 </html>
