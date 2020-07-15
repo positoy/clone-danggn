@@ -16,6 +16,10 @@
                 $("#goods_form").submit();
             });
         });
+        $(".fas fa-camera").onclick(function(){
+            console.log('camera clicked')
+            $("#pictures").click();
+        })
     </script>
         
     <link rel="stylesheet" href="css/styles.css" />
@@ -38,10 +42,8 @@
                 <div>0/10</div>
             </div>
         </div>
-        <form action="/pictures" method="post" enctype="multipart/form-data" id="goods_picture_form">
-            <input type="file" name="filename" id="filename">
-        </form>
-        <form action="/goods" method="post" id="goods_form">
+        <form action="/goods" method="post" enctype="multipart/form-data" id="goods_form">
+            <input type="file" name="pictures" id="pictures">
             <input type="text" onfocus="this.placeholder=''" onblur="this.placeholder='제목'" placeholder="제목" name="title" id="title"><br/>
             <hr>
             <select name="category">
