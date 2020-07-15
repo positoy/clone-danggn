@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller
-public class DController {
+public class GoodsController {
+
+    @GetMapping("/goods")
+    public String getGoods() {
+        return "home";
+    }
 
     @PostMapping("/goods")
     public String postGoods(Goods body) {
