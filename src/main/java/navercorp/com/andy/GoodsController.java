@@ -32,7 +32,7 @@ public class GoodsController {
         System.out.println("goods id : " + id);
         // TODO : add user field inside the goods and get a user from the goods
         Goods goods = goodsRepository.getGoods(id);
-        User user = userRepository.getUser("0");
+        User user = userRepository.getUser(goods.getUserid());
 
         // TODO handle null exception
         if (goods == null || user == null)

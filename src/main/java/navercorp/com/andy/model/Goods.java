@@ -21,8 +21,9 @@ public class Goods {
     // only in the Goods
     String category;
     String body;
+    String userid;
 
-    public Goods(String id, String title, String area, String timestamp, int price, int chat, int like, String img, String category, String body) {
+    public Goods(String id, String title, String area, String timestamp, int price, int chat, int like, String img, String category, String body, String userid) {
         this.id = id;
         this.title = title;
         this.area = area;
@@ -34,6 +35,7 @@ public class Goods {
         imgs.add(img);
         this.category = category;
         this.body = body;
+        this.userid = userid;
     }
 
     public GoodsListItem getListItem() {

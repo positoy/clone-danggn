@@ -11,11 +11,9 @@ public class UserRepository {
 
     public UserRepository() {
         users = new ArrayList<>();
-        users.add(new User("0", "박박박", "신갈동", "/img/user/0.png", 368));
-        users.add(new User("0", "박박박", "신갈동", "/img/user/0.png", 368));
-        users.add(new User("0", "박박박", "신갈동", "/img/user/0.png", 368));
-        users.add(new User("0", "박박박", "신갈동", "/img/user/0.png", 368));
-        users.add(new User("0", "박박박", "신갈동", "/img/user/0.png", 368));
+        users.add(new User("0", "앤디", "가동", "/img/user/0.png", 368));
+        users.add(new User("1", "브리트니", "나동", "/img/user/1.jpg", 468));
+        users.add(new User("2", "디미트리", "다동", "/img/user/2.jpg", 568));
     }
 
     public User getUser(String id) {
