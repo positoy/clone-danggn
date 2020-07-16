@@ -1,13 +1,21 @@
-package navercorp.com.andy;
+package navercorp.com.andy.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor @AllArgsConstructor
 @ToString
-public class Goods {
+public class GoodsListItem {
+    String id;
     String title;
-    String category;
-    String price;
-    String body;
+    String area;
+    String timestamp;
+    int price;
+    int chat;
+    int like;
+// ArrayList in the Goods
+    String img;
 }
