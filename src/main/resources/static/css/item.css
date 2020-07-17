@@ -22,30 +22,52 @@
     padding: 0.25em;
     color: red;
     opacity: 1;
-
 }
 
 .contents .userinfo {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 0.75em;
+    padding: 0.5em;
     border-bottom: solid 1px #eeeeee;
 }
 
-.contents .userinfo__column__picture {
-    font-size: 2.5em;
+.userinfo #userpic {
+    width: 4em;
+    height: 4em;
+    overflow: hidden;
+    border-radius: 50%;
 }
-.contents .userinfo__nameaddr__name {
+
+/* TODO shorter side should match the square size */
+.userinfo #userpic img {
+    margin: 0 auto;
+    width: 4em;
+    margin-top: -1em;
+}
+
+.userinfo #usertext {
+    margin: auto;
+    margin-left: 1em;
+    width: 60%;
+}
+
+.userinfo .userinfo__nameaddr__name {
     font-size: 1.15em;
     font-weight: bold;
-    margin-bottom: 0.25em;
+    margin-bottom: 0.5em;
 }
-.contents .userinfo_nameaddr__addr {
+.userinfo .userinfo_nameaddr__addr {
     font-size: 1em;
 }
-.contents .userinfo img {
-    width: 5em;
+
+.contents .userinfo #usertemp {
+    display: block;
+    margin: auto;
+}
+
+.contents .userinfo #usertemp img {
+    width: 6em;
 }
 
 .contents .goodsinfo {
