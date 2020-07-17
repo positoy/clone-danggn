@@ -36,4 +36,33 @@ public class GoodsRepository {
         System.out.println("Couldn't find any goods with id, " + goodsid);
         return null;
     }
+
+    // TODO none of goods member must be empty
+    public void save(Goods good) {
+        if (!validate(good))
+            fill(good);
+        goods.add(good);
+    }
+
+    boolean validate(Goods good) {
+        return good.getId() != null &&
+                good.getTitle() != null &&
+                good.getArea() != null &&
+                good.getTimestamp() != null &&
+                good.getImgs() != null &&
+                good.getBody() != null &&
+                good.getUserid() != null;
+    }
+
+    // TODO null value shouldn't exist appropriate handle needed.
+    void fill(Goods good) {
+        if (good.getId() == null) good.setId("");
+        if (good.getTitle() == null) good.setTitle("");
+        if (good.getArea() == null) good.setArea("");
+        if (good.getTimestamp() == null) good.setTimestamp("");
+        if (good.getImgs() == null) good.setImgs(new ArrayList<>());
+        if (good.getBody() == null) good.setBody("");
+        if (good.getUserid() == null) good.setUserid("");
+    }
+
 }

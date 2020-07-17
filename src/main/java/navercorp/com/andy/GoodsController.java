@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 @Controller
@@ -45,8 +47,11 @@ public class GoodsController {
     }
 
     @PostMapping("/goods")
-    public String postGoods(Goods body) {
-        System.out.println(body);
+    public String postGoods(Goods good) {
+        System.out.println(good);
+        System.out.println(System.currentTimeMillis());
+        good.setTimestamp(String.valueOf(new Timestamp(System.currentTimeMillis()).getTime()));
+        goodsRepository.save(good);
         return "redirect:/goods";
     }
 }
