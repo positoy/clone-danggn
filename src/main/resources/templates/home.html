@@ -42,8 +42,8 @@
                         <div class="areatime"><span th:text="${item.area}+${item.timestamp}"></span></div>
                         <div class="price"><span th:text="${item.price}">10,000원</span></div>
                         <div class="chatliked">
-                            <i class="far fa-comment" th:text="${item.chat}">1</i>
-                            <i class="far fa-heart" th:text="${item.like}">2</i>
+                            <i class="far fa-comment" th:if="${item.chat>0}" th:text="${item.chat}">1</i>
+                            <i class="far fa-heart" th:if="${item.like>0}" th:text="${item.like}">2</i>
                         </div>
                     </div>
                 </li>
