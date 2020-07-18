@@ -41,7 +41,7 @@ public class Goods {
     }
 
     public GoodsListItem getListItem() {
-        String imgUrl = imgs.size() != 0 ? imgs.get(0) : "/img/000_empty.png";
+        String imgUrl = imgs.size() != 0 ? imgs.get(0) : "";
         return new GoodsListItem(id, title, area, timestamp, price, chat, like, imgUrl);
     }
 
