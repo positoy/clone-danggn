@@ -1,6 +1,15 @@
 window.onload = function() {
     console.log("onload complete")
 
+    $("#write_price").keypress(function(event){
+        console.log("onkeypress" + event.keyCode);
+        if (event.keyCode < '0' || event.keyCode > '57')
+            return false;
+        var cur = $("#write_price").val() + Number.parseInt(event.keyCode - 48);
+        if (Number.parseInt(cur) > 2000000000)
+            return false;
+    });
+
     $("#write_complete_button").click (function(){
         console.log("#goods_form submitted.");
 
