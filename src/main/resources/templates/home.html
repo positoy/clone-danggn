@@ -38,8 +38,8 @@
                     <img class="contents__list__item__img" th:src="${item.img == '' ? '/img/000_empty.png' : item.img}"/>
                     <div class="contents__list__item__description">
                         <div class="title"><span th:text="${item.title}"></span></div>
-                        <div class="areatime"><span th:text="${item.area}+${item.timestamp}"></span></div>
-                        <div class="price"><span th:text="${item.price}">10,000원</span></div>
+                        <div class="areatime"><span th:text="${item.area} + ' · ' + ${item.timestamp}"></span></div>
+                        <div class="price"><span th:text="${item.price} + '원'">10,000원</span></div>
                         <div class="chatliked">
                             <i class="far fa-comment" th:if="${item.chat>0}" th:text="${item.chat}">1</i>
                             <i class="far fa-heart" th:if="${item.like>0}" th:text="${item.like}">2</i>

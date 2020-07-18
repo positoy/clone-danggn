@@ -37,11 +37,11 @@ public class Util {
             long sec = (current_timestamp - item_timestamp) % 3600 % 60;
 
             if (hour != 0)
-                ret = " · " + hour + "시간 전";
+                ret = "" + hour + "시간 전";
             else if (min != 0)
-                ret = " · " + min + "분 전";
+                ret = "" + min + "분 전";
             else
-                ret = " · " + sec + "초 전";
+                ret = "" + sec + "초 전";
 
         } else {
             Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Asia/Seoul"));
@@ -49,7 +49,7 @@ public class Util {
             int year = cal.get(Calendar.YEAR);
             int month = cal.get(Calendar.MONTH) + 1;
             int day = cal.get(Calendar.DAY_OF_MONTH);
-            ret = " · " + month + "월" + day + "일";
+            ret = "" + month + "월" + day + "일";
         }
 
         return ret;

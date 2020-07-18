@@ -46,7 +46,7 @@
         </div>
         <div class="goodsinfo">
             <div class="goodsinfo__title" th:text="${goods.title}">라오스 다이어리</div>
-            <div class="goodsinfo__categorytimestamp" th:text="${goods.category} + ${goods.timestamp}">디지털/가전 · 끌올 37분 전</div>
+            <div class="goodsinfo__categorytimestamp" th:text="${goods.category} + ' · ' + ${goods.timestamp}">디지털/가전 · 끌올 37분 전</div>
             <div class="goodsinfo__body" th:text="${goods.body}">
                 삼성 무선청소기 새 배터리 판매합니다~ 센터에서 20만원에 판매되고 있습니다. 구매 영수증 원하시면 확인해드릴 수 있습니다 ^^ 올 5월 말일날 구매했습니다~
             </div>
@@ -60,7 +60,7 @@
         </div>
         <div class="downnav__column">
             <div class="price">
-                <div class="price__price" th:text="${goods.price}">190,000원</div>
+                <div class="price__price" th:text="${goods.price} + '원'">190,000원</div>
                 <div class="price__suggest">가격 제안하기</div>
             </div>
         </div>
