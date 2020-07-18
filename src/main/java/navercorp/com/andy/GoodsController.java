@@ -34,7 +34,7 @@ public class GoodsController {
     public String getGoods(@PathVariable String id, Model model) {
         System.out.println(id);
         model.addAttribute("goods", goodsService.getGoods(id));
-        model.addAttribute("user", goodsService.getUser(goodsService.getGoods((id)).getUserid()));
+        model.addAttribute("user", goodsService.getUserWithGoodsId(id));
 
         if (model.getAttribute("goods") == null || model.getAttribute("user") == null) {
             System.out.println("goods or user is null");

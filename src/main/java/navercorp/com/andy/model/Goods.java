@@ -7,7 +7,7 @@ import java.util.ArrayList;
 @Data
 @NoArgsConstructor @AllArgsConstructor
 @ToString
-public class Goods {
+public class Goods implements Cloneable {
     // GoodsListItem
     String id;
     String title;
@@ -45,4 +45,10 @@ public class Goods {
         return new GoodsListItem(id, title, area, timestamp, price, chat, like, imgUrl);
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Goods good = (Goods) super.clone();
+        good.imgs = (ArrayList<String>) this.imgs.clone();
+        return good;
+    }
 }

@@ -22,4 +22,36 @@ public class Util {
                 (now_month == month) &&
                 (now_day == day);
     }
+
+    public static String getSmartTimestamp(long current_millis, long item_millis) {
+
+        String ret = "";
+
+        Date itemDate = new Timestamp(item_millis);
+        long current_timestamp = current_millis / 1000;
+        long item_timestamp = item_millis / 1000;
+
+        if (Util.isOnTheSameDate(itemDate)) {
+            long hour = (current_timestamp - item_timestamp) / 3600;
+            long min = (current_timestamp - item_timestamp) % 3600 / 60;
+            long sec = (current_timestamp - item_timestamp) % 3600 % 60;
+
+            if (hour != 0)
+                ret = " · " + hour + "시간 전";
+            else if (min != 0)
+                ret = " · " + min + "분 전";
+            else
+                ret = " · " + sec + "초 전";
+
+        } else {
+            Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Asia/Seoul"));
+            cal.setTime(itemDate);
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH) + 1;
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+            ret = " · " + month + "월" + day + "일";
+        }
+
+        return ret;
+    }
 }
