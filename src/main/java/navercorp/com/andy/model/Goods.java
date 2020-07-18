@@ -32,7 +32,9 @@ public class Goods {
         this.chat = chat;
         this.like = like;
         this.imgs = new ArrayList<>();
-        imgs.add(img);
+        if (!img.isEmpty()) {
+            imgs.add(img);
+        }
         this.category = category;
         this.body = body;
         this.userid = userid;
