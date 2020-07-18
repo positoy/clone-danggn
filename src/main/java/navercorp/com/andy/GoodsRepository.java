@@ -18,6 +18,7 @@ public class GoodsRepository {
         goods.add(new Goods("2", "라오스 다이어리","신동","1594645127",2000,0,5, "/img/001_1.jpg", "디지털/가전", "여기", "2"));
         goods.add(new Goods("3", "삼성 파워건 VS80M8090KC 싸게 팔아요","수원시 팔달구 인계동","1594645127",270000,1,3, "/img/003_1.jpg", "디지털/가전", "들어가는 내용은", "0"));
         goods.add(new Goods("4", "삼성 파워건 무선청소기 새 배터리!","수원시 팔달구 인계동","594645127",150000,0,3, "/img/004_1.jpg", "디지털/가전", "본문입니다", "1"));
+        goods.add(new Goods("5", "냉무 나눔합니","인계동","594645127",150000,0,3, "", "디지털/가전", "본문입니다", "1"));
     }
 
     public ArrayList<GoodsListItem> getDummy() {
@@ -54,7 +55,6 @@ public class GoodsRepository {
                 good.getUserid() != null;
     }
 
-    // TODO null value shouldn't exist appropriate handle needed.
     void fill(Goods good) {
         if (good.getId() == null) good.setId("");
         if (good.getTitle() == null) good.setTitle("");
@@ -64,5 +64,4 @@ public class GoodsRepository {
         if (good.getBody() == null) good.setBody("");
         if (good.getUserid() == null) good.setUserid("");
     }
-
 }
