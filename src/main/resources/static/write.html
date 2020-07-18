@@ -30,11 +30,12 @@
                 <div>0/10</div>
             </div>
         </div>
-        <form action="/goods" method="post" enctype="multipart/form-data" id="goods_form">
+        <form action="/goods" method="post" enctype="multipart/form-data" id="write_form">
             <input type="file" name="pictures" id="pictures">
-            <input type="text" onfocus="this.placeholder=''" onblur="this.placeholder='제목'" placeholder="제목" name="title" id="title"><br/>
+            <input type="text" placeholder="제목" name="title" id="write_title"><br/>
             <hr>
-            <select name="category">
+            <select name="category" id="write_category">
+                <option selected disabled>카테고리</option>
                 <option value="디지털/가전">디지털/가전</option>
                 <option value="가구/인테리어">가구/인테리어</option>
                 <option value="유아동/유아도서">유아동/유아도서</option>
@@ -51,9 +52,10 @@
                 <option value="삽니다">삽니다</option>
             </select>
             <hr>
-            <input type="text" onfocus="this.placeholder=''" onblur="this.placeholder='&#8361; 가격 (선택사항)'" placeholder="&#8361; 가격 (선택사항)" name="price" id="price">
+            <input type="text" placeholder="&#8361; 가격 (선택사항)" name="price" id="write_price">
             <hr>
-            <textarea onfocus="this.value=''" name="body" id="body">권선동에 올릴 게시글 내용을 작성해주세요. 가품 및 판매금지품목은 게시가 제한될 수 있어요.</textarea><br/>
+            <textarea placeholder="권선동에 올릴 게시글 내용을 작성해주세요. 가품 및 판매금지품목은 게시가 제한될 수 있어요." name="body" id="write_body"></textarea><br/>
+            <input type="hidden" name="userid" id="write_userid">
         </form>
         <nav class="downnav">
             <ul class="downnav__list">
