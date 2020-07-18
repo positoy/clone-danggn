@@ -10,9 +10,9 @@
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/styles.css" />
-</head> 
+</head>
 <body>
-    <div class="upmenu">
+    <div class="upmenu background-white">
         <div class="upmenu__column">
             <span>권선동</span>
             <i class="fas fa-chevron-down"></i>
@@ -24,9 +24,7 @@
         </div>
     </div>
     <div class="contents">
-        <div class="empty">
-
-        </div>
+        <div class="empty"></div>
         <nav class="upnav">
             <ul class="upnav__list">
                 <li class="upnav__list__item selected">중고거래</li>
@@ -34,7 +32,7 @@
             </ul>
         </nav>
         <ul class="contents__list">
-            <a th:each="item:${list}" th:href="@{'goods/'} + ${item.id}">
+            <a th:each="item:${list}" th:href="@{'/goods/'} + ${item.id}">
                 <li class="contents__list__item">
                     <img class="contents__list__item__img" th:src="${item.img}"/>
                     <div class="contents__list__item__description">
@@ -49,34 +47,35 @@
                 </li>
             </a>
         </ul>
+        <div class="empty"></div>
     </div>
     <nav class="downnav">
         <ul class="downnav__list">
-            <li class="downnav__list__item"><a href="goods">
+            <li class="downnav__list__item"><a href="/goods">
                 <div class="downnav__list__item__menubox">
                     <i class="fas fa-home"></i>
                     <div class="downnav__list__item__menubox__name">홈</div>
                 </div>
             </a></li>
-            <li class="downnav__list__item"><a href="category.html">
+            <li class="downnav__list__item"><a href="/category.html">
                 <div class="downnav__list__item__menubox">
                     <i class="fas fa-bars"></i>
                     <div class="downnav__list__item__menubox__name">카테고리</div>
                 </div>
             </a></li>
-            <li class="downnav__list__item"><a href="write.html">
+            <li class="downnav__list__item"><a href="/write.html">
                 <div class="downnav__list__item__menubox">
                     <i class="fas fa-pencil-alt"></i>
                     <div class="downnav__list__item__menubox__name">글쓰기</div>
                 </div>
             </a></li>
-            <li class="downnav__list__item"><a href="chat.html">
+            <li class="downnav__list__item"><a href="/chat.html">
                 <div class="downnav__list__item__menubox">
                     <i class="far fa-comments"></i>
                     <div class="downnav__list__item__menubox__name">채팅</div>
                 </div>
             </a></li>
-            <li class="downnav__list__item"><a href="user.html">
+            <li class="downnav__list__item"><a href="/user.html">
                 <div class="downnav__list__item__menubox">
                     <i class="far fa-user"></i>
                     <div class="downnav__list__item__menubox__name">나의 당근</div>

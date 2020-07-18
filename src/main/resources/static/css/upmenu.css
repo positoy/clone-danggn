@@ -10,12 +10,12 @@
     font-weight: bold;
     z-index: 10;
 }
-.upmenu#with_bottom_bar {
-    border-bottom: solid 1px #dddddd;
-}
-.upmenu#chat_with_bottom_bar {
-    border-bottom: solid 1px #dddddd;
+
+.background-white {
     background-color: white;
+}
+.bottom-bar {
+    border-bottom: solid 1px #dddddd;
 }
 .upmenu#item {
     color: white;
