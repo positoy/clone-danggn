@@ -17,11 +17,15 @@ public class GoodsController {
     @Autowired
     FileStorageService fileService;
 
-    final String ERROR_REDIRECT_TO_HOME = "redirect:/goods";
-    final String OKAY_REDIRECT_TO_HOME = "redirect:/goods";
+    final String REDIRECT_TO_HOME = "redirect:/goods";
 
     final String TEMPLATE_HOME = "home";
     final String TEMPLATE_ITEM = "item";
+
+    @GetMapping("/")
+    public String getGoods() {
+        return REDIRECT_TO_HOME;
+    }
 
     @GetMapping("/goods")
     public String getGoods(Model model) {
@@ -37,7 +41,7 @@ public class GoodsController {
 
         if (model.getAttribute("goods") == null || model.getAttribute("user") == null) {
             System.out.println("goods or user is null");
-            return ERROR_REDIRECT_TO_HOME;
+            return REDIRECT_TO_HOME;
         }
         return TEMPLATE_ITEM;
     }
@@ -50,7 +54,7 @@ public class GoodsController {
         fileService.store(pics);
         goodsService.saveGoods(good);
 
-        return OKAY_REDIRECT_TO_HOME;
+        return REDIRECT_TO_HOME;
     }
 
 }
