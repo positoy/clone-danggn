@@ -1,11 +1,15 @@
 package navercorp.com.andy.naver;
 
 import org.json.simple.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class AccessTokenAPI {
+
+    final static Logger logger = LoggerFactory.getLogger(AccessTokenAPI.class);
 
     final static String apiURL = "https://nid.naver.com/oauth2.0/token";
 
@@ -29,7 +33,7 @@ public class AccessTokenAPI {
         try {
             json = request.getJsonResponse();
         } catch (Exception e) {
-            System.out.println("failed to get and parse accesstoken retrieve response" + e.getMessage());
+            logger.info("failed to get and parse accesstoken retrieve response" + e.getMessage());
             e.printStackTrace();
             return null;
         }
@@ -54,7 +58,7 @@ public class AccessTokenAPI {
         try {
             json = request.getJsonResponse();
         } catch (Exception e) {
-            System.out.println("failed to get and parse refreshtoken response" + e.getMessage());
+            logger.info("failed to get and parse refreshtoken response" + e.getMessage());
             e.printStackTrace();
             return null;
         }
@@ -79,7 +83,7 @@ public class AccessTokenAPI {
         try {
             String response = request.getResponse();
         } catch (Exception e) {
-            System.out.println("failed to get delete token response" + e.getMessage());
+            logger.info("failed to get delete token response" + e.getMessage());
             e.printStackTrace();
             return false;
         }

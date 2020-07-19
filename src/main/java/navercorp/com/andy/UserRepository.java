@@ -5,10 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import navercorp.com.andy.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserRepository {
+
+    final static Logger logger = LoggerFactory.getLogger(UserRepository.class);
 
     Map<String, User> users = new HashMap<>();
 
@@ -27,7 +31,7 @@ public class UserRepository {
     public User getUser(String id) {
         User user = users.get(id);
         if (user == null) {
-            System.out.println("Couldn't find any user with the id, " + id);
+            logger.info("Couldn't find any user with the id, " + id);
         }
         return user;
     }

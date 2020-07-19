@@ -2,7 +2,8 @@ package navercorp.com.andy.naver;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -14,6 +15,8 @@ import java.util.Map;
 import static navercorp.com.andy.naver.HTTPRequestManager.METHOD.GET;
 
 public class HTTPRequestManager {
+
+    final static Logger logger = LoggerFactory.getLogger(HTTPRequestManager.class);
 
     public static enum METHOD {
         POST, GET, PUT, DELETE
@@ -86,7 +89,7 @@ public class HTTPRequestManager {
                     apiURL += "&";
                 }
             }
-            System.out.println(apiURL);
+            logger.info(apiURL);
         }
 
         HttpURLConnection con = connect(apiURL);

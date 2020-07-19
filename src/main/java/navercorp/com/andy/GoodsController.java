@@ -3,6 +3,8 @@ package navercorp.com.andy;
 import navercorp.com.andy.model.Goods;
 import navercorp.com.andy.model.User;
 import navercorp.com.andy.naver.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,8 @@ import java.util.ArrayList;
 
 @Controller
 public class GoodsController {
+
+    final static Logger logger = LoggerFactory.getLogger(GoodsController.class);
 
     @Autowired
     GoodsService goodsService;
@@ -37,18 +41,18 @@ public class GoodsController {
     @GetMapping("/goods")
     public String getGoods(Model model, @RequestParam(defaultValue = "") String code, @RequestParam(defaultValue = "") String state) {
 
-        System.out.println("code : " + code);
-        System.out.println("state : " + state);
+        logger.info("code : " + code);
+        logger.info("state : " + state);
 
         model.addAttribute("list", goodsService.getDummy());
         if (!state.equals(NaverConfiguration.VAL.state)) {
-            System.out.println("error! strange access trial");
+            logger.info("error! strange access trial");
         } else if (!code.isEmpty()){
             User user = userService.getUser(code);
             if (user != null) {
                 model.addAttribute("user", user);
             } else {
-                System.out.println("failed to get user information from the authtoken");
+                logger.info("failed to get user information from the authtoken");
             }
         }
 
@@ -57,16 +61,16 @@ public class GoodsController {
 
     @GetMapping("/goods/{id}")
     public String getGoods(@PathVariable String id, Model model, @RequestParam(defaultValue = "") String userid) {
-        System.out.println(id);
+        logger.info(id);
         model.addAttribute("goods", goodsService.getGoods(id));
-        System.out.println((Goods)model.getAttribute("goods"));
+        logger.info(((Goods)model.getAttribute("goods")).toString());
         model.addAttribute("goodsuser", goodsService.getUserWithGoodsId(id));
-        System.out.println((User)model.getAttribute("user"));
+        logger.info(((User)model.getAttribute("user")).toString());
         if (!userid.isEmpty())
             model.addAttribute("user", userService.getUserById(userid));
 
         if (model.getAttribute("goods") == null || model.getAttribute("user") == null) {
-            System.out.println("goods or user is null");
+            logger.info("goods or user is null");
             return REDIRECT_TO_HOME;
         }
         return TEMPLATE_ITEM;
@@ -75,9 +79,9 @@ public class GoodsController {
     @PostMapping("/goods")
     @ResponseBody
     public String postGoods(Goods good, @RequestParam MultipartFile pics, RedirectAttributes redirectAttributes) {
-        System.out.println(good);
+        logger.info(good.toString());
         good = goodsService.refineGoods(good);
-        System.out.println(good);
+        logger.info(good.toString());
 
         if (!pics.getOriginalFilename().isEmpty()) {
             String filename = fileService.generateFileName(pics, good.getTimestamp(), good.getUserid());

@@ -2,12 +2,16 @@ package navercorp.com.andy;
 
 import navercorp.com.andy.model.Goods;
 import navercorp.com.andy.model.GoodsListItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
 @Repository
 public class GoodsRepository {
+
+    final static Logger logger = LoggerFactory.getLogger(GoodsController.class);
 
     ArrayList<Goods> goods;
 
@@ -34,7 +38,7 @@ public class GoodsRepository {
             if (good.getId().equals(goodsid))
                 return good;
         }
-        System.out.println("Couldn't find any goods with id, " + goodsid);
+        logger.info("Couldn't find any goods with id, " + goodsid);
         return null;
     }
 

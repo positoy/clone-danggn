@@ -1,8 +1,13 @@
 package navercorp.com.andy.naver;
 
 import org.json.simple.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProfileAPI {
+
+    final static Logger logger = LoggerFactory.getLogger(ProfileAPI.class);
+
     final static String apiURL = "https://openapi.naver.com/v1/nid/me";
 
     public static Profile get(String access_token) {
@@ -13,7 +18,7 @@ public class ProfileAPI {
         try {
             json = request.getJsonResponse();
         } catch (Exception e) {
-            System.out.println("failed to get and parse naver profile response" + e.getMessage());
+            logger.info("failed to get and parse naver profile response" + e.getMessage());
             e.printStackTrace();
             return null;
         }
