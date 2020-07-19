@@ -1,5 +1,17 @@
 window.onload = function() {
-    console.log("onload complete")
+    console.log("onload complete");
+
+    (function(){
+        $user = $("user");
+        const userid = $user.attr("data-id");
+        console.log(userid);
+
+        if (userid != "") {
+            $(".downnav__list__item a").each(function(index, item){
+                $(item).attr("href", $(item).attr("href") + "?userid=" + userid);
+            })
+        }
+    })();
 
     $("#write_price").keypress(function(event){
         console.log("onkeypress" + event.keyCode);
