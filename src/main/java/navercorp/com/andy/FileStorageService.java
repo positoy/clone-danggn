@@ -14,7 +14,8 @@ import java.nio.file.StandardCopyOption;
 @Service
 public class FileStorageService{
 
-    private final Path rootLocation = Paths.get("/Users/positoy/IdeaProjects/clone-danggn/src/main/resources/static/img/goods");
+    private final String relPath = "/img/goods";
+    private final Path rootLocation = Paths.get("/Users/positoy/IdeaProjects/clone-danggn/target/classes/static" + relPath);
     File rootDirectory;
 
     public FileStorageService() {
@@ -25,9 +26,16 @@ public class FileStorageService{
         }
     }
 
-    public void store(MultipartFile file) {
-        String filename = StringUtils.cleanPath(file.getOriginalFilename());
+    public String generateFileName(MultipartFile file, String timestamp, String userid) {
+        String filename = StringUtils.cleanPath(timestamp + "_" + userid + "_" + file.getOriginalFilename());
         System.out.println("filename : " + filename);
+        return filename;
+    }
+    public String generateFilePath(String filename) {
+        return relPath + "/" + filename;
+    }
+
+    public void store(MultipartFile file, String filename) {
         try {
             if (file.isEmpty())
                 throw new Exception("Failed to store empty file " + filename);

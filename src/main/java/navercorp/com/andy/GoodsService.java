@@ -5,6 +5,7 @@ import navercorp.com.andy.model.GoodsListItem;
 import navercorp.com.andy.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ public class GoodsService {
 
     @Autowired
     UserRepository userRepository;
+    private Goods good;
+    private ArrayList<String> files;
 
     ArrayList<GoodsListItem> getDummy() {
         ArrayList<GoodsListItem> list = goodsRepository.getDummy();
@@ -31,16 +34,19 @@ public class GoodsService {
         return list;
     }
 
-    void saveGoods(Goods good) {
-        long timestamp = new Timestamp(System.currentTimeMillis()).getTime() / 1000;
-        good.setTimestamp(String.valueOf(timestamp));
-        good.setId(good.getUserid() + "_" + timestamp);
+    Goods refineGoods(Goods good) {
+        good.setTimestamp(String.valueOf(new Timestamp(System.currentTimeMillis()).getTime() / 1000));
+        good.setUserid(good.getUserid().isEmpty() ? "unknown" : good.getUserid());
+        good.setId(good.getTimestamp() + "_" + good.getUserid());
+        return good;
+    }
 
-        if (good.getUserid().isEmpty()) {
-            System.out.println("no userid so is set 0");
-            good.setUserid("0");
-        }
+    void saveGoods(Goods good) {
         goodsRepository.save(good);
+    }
+
+    void setImgs(Goods good, ArrayList<String> imgs) {
+        good.setImgs(imgs);
     }
 
     Goods getGoods(String id) {

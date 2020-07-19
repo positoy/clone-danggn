@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
+
 @Controller
 public class GoodsController {
 
@@ -50,8 +52,19 @@ public class GoodsController {
     @ResponseBody
     public String postGoods(Goods good, @RequestParam MultipartFile pics, RedirectAttributes redirectAttributes) {
         System.out.println(good);
-        System.out.println(pics.getOriginalFilename());
-        fileService.store(pics);
+        good = goodsService.refineGoods(good);
+        System.out.println(good);
+
+        if (!pics.getOriginalFilename().isEmpty()) {
+            String filename = fileService.generateFileName(pics, good.getTimestamp(), good.getUserid());
+            fileService.store(pics, filename);
+
+            ArrayList<String> imgs = new ArrayList<>();
+            String filepath = fileService.generateFilePath(filename);
+            imgs.add(filepath);
+            goodsService.setImgs(good, imgs);
+        }
+
         goodsService.saveGoods(good);
 
         return REDIRECT_TO_HOME;

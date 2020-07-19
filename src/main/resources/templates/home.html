@@ -35,7 +35,7 @@
         <ul class="contents__list">
             <a th:each="item:${list}" th:href="@{'/goods/'} + ${item.id}">
                 <li class="contents__list__item">
-                    <img class="contents__list__item__img" th:src="${item.img == '' ? '/img/000_empty.png' : item.img}"/>
+                    <img class="contents__list__item__img" th:src="${item.img == '' ? '/img/goods/000_empty.png' : item.img}"/>
                     <div class="contents__list__item__description">
                         <div class="title"><span th:text="${item.title}"></span></div>
                         <div class="areatime"><span th:text="${item.area} + ' · ' + ${item.timestamp}"></span></div>
