@@ -32,11 +32,13 @@ public class UserRepository {
         User user = users.get(id);
         if (user == null) {
             logger.info("Couldn't find any user with the id, " + id);
+            user = users.get("unknown");
         }
         return user;
     }
 
     public void addUser(User user) {
+        logger.info("add/update user with the id, " + user.getId());
         users.put(user.getId(), user);
     }
 }

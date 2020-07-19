@@ -45,15 +45,12 @@ public class GoodsController {
         logger.info("state : " + state);
 
         model.addAttribute("list", goodsService.getDummy());
+
         if (!state.equals(NaverConfiguration.VAL.state)) {
-            logger.info("error! strange access trial");
+            logger.info("/goods - (not login)");
         } else if (!code.isEmpty()){
-            User user = userService.getUser(code);
-            if (user != null) {
-                model.addAttribute("user", user);
-            } else {
-                logger.info("failed to get user information from the authtoken");
-            }
+            logger.info("/goods - (naver login : authcode " + code + ")");
+            model.addAttribute("user", userService.getUser(code));
         }
 
         return TEMPLATE_HOME;

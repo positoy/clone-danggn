@@ -34,22 +34,12 @@ public class UserService {
                 logger.info("break due to null token");
                 break;
             }
-            logger.info(token.toString());
-            logger.info(token.getAccess_token());
-            logger.info(token.getRefresh_token());
-            logger.info(token.getToken_type());
-            logger.info(token.getExpires_in());
 
             profile = ProfileAPI.get(token.getAccess_token());
             if (profile == null) {
                 logger.info("break due to null profile");
                 break;
             }
-            logger.info(profile.toString());
-            logger.info(profile.getId());
-            logger.info(profile.getName());
-            logger.info(profile.getNickname());
-            logger.info(profile.getProfile_image());
 
         } while (false);
 
@@ -61,7 +51,7 @@ public class UserService {
         User user = userRepository.getUser(profile.getId());
         if (user == null) {
             user = new User(profile.getId(), profile.getNickname(), profile.getProfile_image(), profile.getName(),
-                    token.getAccess_token(), token.getRefresh_token(), token.getToken_type(), token.getExpires_in(), "", 368);
+                    token.getAccess_token(), token.getRefresh_token(), token.getToken_type(), token.getExpires_in(), "기본 지역", 368);
             userRepository.addUser(user);
         }
 
