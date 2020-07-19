@@ -1,6 +1,7 @@
 package navercorp.com.andy;
 
 import navercorp.com.andy.model.Goods;
+import navercorp.com.andy.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +40,9 @@ public class GoodsController {
     public String getGoods(@PathVariable String id, Model model) {
         System.out.println(id);
         model.addAttribute("goods", goodsService.getGoods(id));
+        System.out.println((Goods)model.getAttribute("goods"));
         model.addAttribute("user", goodsService.getUserWithGoodsId(id));
+        System.out.println((User)model.getAttribute("user"));
 
         if (model.getAttribute("goods") == null || model.getAttribute("user") == null) {
             System.out.println("goods or user is null");
