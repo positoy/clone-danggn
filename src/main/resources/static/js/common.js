@@ -2,15 +2,24 @@ window.onload = function() {
     console.log("onload complete");
 
     (function(){
+        var naver_login_uri = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=AlS3TCLxJYn7SNPp75LE&state=hello&?redirect_uri=";
+        naver_login_uri = naver_login_uri + encodeURIComponent("http://" + window.location.hostname + ":8080/goods");
         $user = $("user");
         const userid = $user.attr("data-id");
         console.log(userid);
 
-        if (userid != "") {
-            $(".downnav__list__item a").each(function(index, item){
-                $(item).attr("href", $(item).attr("href") + "?userid=" + userid);
-            })
-        }
+        $(".downnav__list__item a").each(function(index, item){
+            if (userid == "" || userid === undefined) {
+                var isWriteMenu = ($(item).attr("href").indexOf("write") != -1);
+                var isChatMenu = ($(item).attr("href").indexOf("chat") != -1);
+                var isUserMenu = ($(item).attr("href").indexOf("user") != -1);
+                if (isWriteMenu || isChatMenu || isUserMenu)
+                    $(item).attr("href", naver_login_uri);
+            } else {
+                var nowHref = $(item).attr("href");
+                $(item).attr("href", nowHref + "?userid=" + userid);
+            }
+        })
     })();
 
     $("#write_price").keypress(function(event){
