@@ -1,29 +1,38 @@
 package navercorp.com.andy;
 
-import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.InputStream;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class FileStorageService{
 
-    private final String relPath = "/img/goods";
-    private final Path rootLocation = Paths.get("/Users/positoy/IdeaProjects/clone-danggn/target/classes/static" + relPath);
-    File rootDirectory;
+    URL classpath = ClassLoader.getSystemResource("");
+    Path img_goods_directory;
+    Path img_user_directory;
 
     public FileStorageService() {
-        System.out.println(rootLocation.toString());
-        rootDirectory = new File(rootLocation.toString());
-        if (!rootDirectory.exists()) {
-            rootDirectory.mkdir();
-        }
+        img_goods_directory = Paths.get(classpath.getFile() + "static/img/goods");
+        img_user_directory = Paths.get(classpath.getFile() + "static/img/user");
+
+        System.out.println(img_goods_directory.toString());
+        System.out.println(img_user_directory.toString());
+
+        File goodsDirectory = new File(img_goods_directory.toString());
+        File userDirectory = new File(img_user_directory.toString());
+
+        if (!goodsDirectory.exists())
+            goodsDirectory.mkdir();
+
+        if (!userDirectory.exists())
+            userDirectory.mkdir();
     }
 
     public String generateFileName(MultipartFile file, String timestamp, String userid) {
@@ -31,11 +40,16 @@ public class FileStorageService{
         System.out.println("filename : " + filename);
         return filename;
     }
-    public String generateFilePath(String filename) {
-        return relPath + "/" + filename;
+
+    public String generateGoodsImgPath(String filename) {
+        return "/img/goods/" + filename;
     }
 
-    public void store(MultipartFile file, String filename) {
+    public String generateUserImgPath(String filename) {
+        return "/img/user/" + filename;
+    }
+
+    public void storeGoodsImg(MultipartFile file, String filename) {
         try {
             if (file.isEmpty())
                 throw new Exception("Failed to store empty file " + filename);
@@ -44,7 +58,24 @@ public class FileStorageService{
                 throw new Exception("Cannot store file with relative path outside current directory " + filename);
 
             try (InputStream inputStream = file.getInputStream()) {
-                long size = Files.copy(inputStream, rootLocation.resolve(filename), StandardCopyOption.REPLACE_EXISTING);
+                long size = Files.copy(inputStream, img_goods_directory.resolve(filename), StandardCopyOption.REPLACE_EXISTING);
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Failed to store file " + e.getMessage());
+        }
+    }
+
+    public void storeUserImg(MultipartFile file, String filename) {
+        try {
+            if (file.isEmpty())
+                throw new Exception("Failed to store empty file " + filename);
+
+            if (filename.contains(".."))
+                throw new Exception("Cannot store file with relative path outside current directory " + filename);
+
+            try (InputStream inputStream = file.getInputStream()) {
+                long size = Files.copy(inputStream, img_goods_directory.resolve(filename), StandardCopyOption.REPLACE_EXISTING);
             }
         }
         catch (Exception e) {

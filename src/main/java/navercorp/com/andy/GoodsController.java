@@ -60,10 +60,10 @@ public class GoodsController {
 
         if (!pics.getOriginalFilename().isEmpty()) {
             String filename = fileService.generateFileName(pics, good.getTimestamp(), good.getUserid());
-            fileService.store(pics, filename);
+            fileService.storeGoodsImg(pics, filename);
 
             ArrayList<String> imgs = new ArrayList<>();
-            String filepath = fileService.generateFilePath(filename);
+            String filepath = fileService.generateGoodsImgPath(filename);
             imgs.add(filepath);
             goodsService.setImgs(good, imgs);
         }
