@@ -2,7 +2,7 @@ window.onload = function() {
     console.log("onload complete");
 
     (function(){
-        var naver_login_uri = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=AlS3TCLxJYn7SNPp75LE&state=hello&?redirect_uri=";
+        var naver_login_uri = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=AlS3TCLxJYn7SNPp75LE&state=hello&&redirect_uri=";
         naver_login_uri = naver_login_uri + encodeURIComponent("http://" + window.location.hostname + ":8080/goods");
         $user = $("user");
         const userid = $user.attr("data-id");
