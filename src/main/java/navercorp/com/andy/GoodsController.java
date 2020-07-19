@@ -47,17 +47,27 @@ public class GoodsController {
 
             do {
                 token = AccessTokenAPI.get(code);
-                if (token == null)
+                if (token == null) {
+                    System.out.println("break due to null token");
                     break;
+                }
+                System.out.println(token);
+                System.out.println(token.getAccess_token());
+                System.out.println(token.getRefresh_token());
+                System.out.println(token.getToken_type());
+                System.out.println(token.getExpires_in());
 
                 profile = ProfileAPI.get(token.getAccess_token());
-                if (profile == null)
+                if (profile == null) {
+                    System.out.println("break due to null profile");
                     break;
+                }
+                System.out.println(profile);
+                System.out.println(profile.getId());
+                System.out.println(profile.getName());
+                System.out.println(profile.getNickname());
+                System.out.println(profile.getProfile_image());
             } while (false);
-
-
-            System.out.println(token);
-            System.out.println(profile);
         }
 
         return TEMPLATE_HOME;

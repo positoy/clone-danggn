@@ -23,6 +23,6 @@ public class ProfileAPI {
         String profile_image = (String) ((JSONObject)json.get("response")).get("profile_image");
         String name = (String) ((JSONObject)json.get("response")).get("name");
 
-        return new Profile(id, nickname, profile_image, name);
+        return (id == null) ? null : new Profile(id, nickname, profile_image, name);
     }
 }

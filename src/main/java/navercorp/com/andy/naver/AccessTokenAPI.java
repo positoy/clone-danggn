@@ -23,6 +23,7 @@ public class AccessTokenAPI {
         queryParams.put(NaverConfiguration.KEY.grant_type, NaverConfiguration.VAL.grant_type_authorization_code);
         queryParams.put(NaverConfiguration.KEY.code, authcode);
         queryParams.put(NaverConfiguration.KEY.state, NaverConfiguration.VAL.state);
+        request.setQueryParams(queryParams);
 
         JSONObject json = null;
         try {
@@ -38,7 +39,7 @@ public class AccessTokenAPI {
         String token_type = (String)json.get("token_type");
         String expires_in = (String)json.get("expires_in");
 
-        return new Token(access_token, refresh_token, token_type, expires_in);
+        return (access_token == null) ? null : new Token(access_token, refresh_token, token_type, expires_in);
     }
 
     public static Token refresh(String refreshtoken) {
@@ -47,6 +48,7 @@ public class AccessTokenAPI {
         Map<String,String> queryParams = getCommonQueryParams();
         queryParams.put(NaverConfiguration.KEY.grant_type, NaverConfiguration.VAL.grant_type_refresh_token);
         queryParams.put(NaverConfiguration.KEY.refresh_token, refreshtoken);
+        request.setQueryParams(queryParams);
 
         JSONObject json = null;
         try {
@@ -72,6 +74,7 @@ public class AccessTokenAPI {
         queryParams.put(NaverConfiguration.KEY.grant_type, NaverConfiguration.VAL.grant_type_delete);
         queryParams.put(NaverConfiguration.KEY.access_token, access_token);
         queryParams.put(NaverConfiguration.KEY.service_provider, NaverConfiguration.VAL.service_provider);
+        request.setQueryParams(queryParams);
 
         try {
             String response = request.getResponse();
