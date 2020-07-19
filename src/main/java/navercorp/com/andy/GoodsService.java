@@ -38,9 +38,9 @@ public class GoodsService {
         return list;
     }
 
-    Goods refineGoods(Goods good) {
+    Goods refineGoods(Goods good, String userid) {
         good.setTimestamp(String.valueOf(new Timestamp(System.currentTimeMillis()).getTime() / 1000));
-        good.setUserid(good.getUserid().isEmpty() ? "unknown" : good.getUserid());
+        good.setUserid(userid.isEmpty() ? "unknown" : userid);
         good.setId(good.getTimestamp() + "_" + good.getUserid());
         return good;
     }

@@ -75,10 +75,9 @@ public class GoodsController {
 
     @PostMapping("/goods")
     @ResponseBody
-    public String postGoods(Goods good, @RequestParam MultipartFile pics, RedirectAttributes redirectAttributes) {
+    public String postGoods(Goods good, @RequestParam(defaultValue = "") String userid, @RequestParam MultipartFile pics, RedirectAttributes redirectAttributes) {
         logger.info(good.toString());
-        good = goodsService.refineGoods(good);
-        logger.info(good.toString());
+        good = goodsService.refineGoods(good, userid);
 
         if (!pics.getOriginalFilename().isEmpty()) {
             String filename = fileService.generateFileName(pics, good.getTimestamp(), good.getUserid());
@@ -90,6 +89,7 @@ public class GoodsController {
             goodsService.setImgs(good, imgs);
         }
 
+        logger.info(good.toString());
         goodsService.saveGoods(good);
 
         return REDIRECT_TO_HOME;
