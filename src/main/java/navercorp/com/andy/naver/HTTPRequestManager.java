@@ -89,9 +89,9 @@ public class HTTPRequestManager {
                     apiURL += "&";
                 }
             }
-            logger.info(apiURL);
         }
 
+        logger.info("request --> " + apiURL);
         HttpURLConnection con = connect(apiURL);
 
         try {
@@ -124,7 +124,7 @@ public class HTTPRequestManager {
                 return readBody(con.getErrorStream());
             }
         } catch (IOException e) {
-            throw new RuntimeException("API 요청과 응답 실패", e);
+            throw new RuntimeException("API requset&resposne failed", e);
         } finally {
             con.disconnect();
         }
@@ -135,9 +135,9 @@ public class HTTPRequestManager {
             URL url = new URL(apiURL);
             return (HttpURLConnection)url.openConnection();
         } catch (MalformedURLException e) {
-            throw new RuntimeException("API URL이 잘못되었습니다. : " + apiURL, e);
+            throw new RuntimeException("apiURL wrong : " + apiURL, e);
         } catch (IOException e) {
-            throw new RuntimeException("연결이 실패했습니다. : " + apiURL, e);
+            throw new RuntimeException("connection failed : " + apiURL, e);
         }
     }
 
@@ -154,7 +154,7 @@ public class HTTPRequestManager {
 
             return responseBody.toString();
         } catch (IOException e) {
-            throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
+            throw new RuntimeException("failed to read response ", e);
         }
     }
 }
