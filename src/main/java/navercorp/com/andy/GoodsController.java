@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.processor.templateboundaries.ITemplateBoundariesProcessor;
 
 import java.util.ArrayList;
 
@@ -31,8 +32,15 @@ public class GoodsController {
     }
 
     @GetMapping("/goods")
-    public String getGoods(Model model) {
+    public String getGoods(Model model, @RequestParam String code, @RequestParam String state) {
+
+        System.out.println("code : " + code);
+        System.out.println("state : " + state);
+
         model.addAttribute("list", goodsService.getDummy());
+        if (!state.equals("hello"))
+            System.out.println("error! strange access trial");
+
         return TEMPLATE_HOME;
     }
 
