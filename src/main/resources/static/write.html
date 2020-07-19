@@ -25,13 +25,15 @@
     <div class="contents">
         <div class="empty"></div>
         <div class="contents__pictures">
-            <div class="contents__pictures__item">
-                <i class="fas fa-camera"></i>
-                <div>0/10</div>
+            <div class="contents__pictures__item" id="write_camera">
+                <div id="write_camera_box">
+                    <i class="fas fa-camera"></i>
+                    <div id="write_camera_box_count">0/10</div>
+                </div>
             </div>
         </div>
-        <form action="/goods" method="post" enctype="multipart/form-data" id="write_form">
-            <input type="file" name="pictures" id="pictures">
+        <form action="/goods" method="post" id="write_form_pics" enctype="multipart/form-data">
+            <input type="file" name="pics" id="write_pics" accept="image/*" multiple>
             <input type="text" placeholder="제목" name="title" id="write_title"><br/>
             <hr>
             <select name="category" id="write_category">

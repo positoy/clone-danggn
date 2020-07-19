@@ -1,22 +1,21 @@
 package navercorp.com.andy;
 
 import navercorp.com.andy.model.Goods;
-import navercorp.com.andy.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import java.sql.Timestamp;
-import java.util.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class GoodsController {
 
     @Autowired
     GoodsService goodsService;
+
+    @Autowired
+    FileStorageService fileService;
 
     final String ERROR_REDIRECT_TO_HOME = "redirect:/goods";
     final String OKAY_REDIRECT_TO_HOME = "redirect:/goods";
@@ -44,10 +43,14 @@ public class GoodsController {
     }
 
     @PostMapping("/goods")
-    public String postGoods(Goods good) {
+    @ResponseBody
+    public String postGoods(Goods good, @RequestParam MultipartFile pics, RedirectAttributes redirectAttributes) {
         System.out.println(good);
+        System.out.println(pics.getOriginalFilename());
+        fileService.store(pics);
         goodsService.saveGoods(good);
 
         return OKAY_REDIRECT_TO_HOME;
     }
+
 }

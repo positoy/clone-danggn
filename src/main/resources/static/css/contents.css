@@ -59,20 +59,37 @@
 .contents .contents__advertise__list__item {
     display: block;
 }
+.contents #write_pics {
+    display: none;
+}
+
 .contents .contents__pictures {
+    display: flex;
     padding: 1em;
     border-bottom: solid 1px #dddddd;
 }
-.contents .contents__pictures__item {
+.contents .contents__pictures .contents__pictures__item {
     width: 6em;
     height: 6em;
     border: solid 1px #dddddd;
     color: #777777;
     border-radius: 0.25em;
-    padding: 2em;
+    padding: 0em;
     text-align: center;
+    margin-right: 0.5em;
+    overflow: hidden;
 }
-.contents .contents__pictures__item i{
+
+.contents .contents__pictures .contents__pictures__item #write_camera_box {
+    padding: 2em;
+}
+
+.contents .contents__pictures .contents__pictures__item img{
+    width: 6em;
+    margin-top: -1em;
+}
+
+.contents .contents__pictures .contents__pictures__item i{
     font-size: 1.5em;
 }
 
