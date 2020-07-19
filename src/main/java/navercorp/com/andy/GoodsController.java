@@ -19,6 +19,9 @@ public class GoodsController {
     GoodsService goodsService;
 
     @Autowired
+    UserService userService;
+
+    @Autowired
     FileStorageService fileService;
 
     final String REDIRECT_TO_HOME = "redirect:/goods";
@@ -40,34 +43,13 @@ public class GoodsController {
         model.addAttribute("list", goodsService.getDummy());
         if (!state.equals(NaverConfiguration.VAL.state)) {
             System.out.println("error! strange access trial");
-        } else if (!code.isEmpty() && !state.isEmpty()){
-
-            Token token = null;
-            Profile profile = null;
-
-            do {
-                token = AccessTokenAPI.get(code);
-                if (token == null) {
-                    System.out.println("break due to null token");
-                    break;
-                }
-                System.out.println(token);
-                System.out.println(token.getAccess_token());
-                System.out.println(token.getRefresh_token());
-                System.out.println(token.getToken_type());
-                System.out.println(token.getExpires_in());
-
-                profile = ProfileAPI.get(token.getAccess_token());
-                if (profile == null) {
-                    System.out.println("break due to null profile");
-                    break;
-                }
-                System.out.println(profile);
-                System.out.println(profile.getId());
-                System.out.println(profile.getName());
-                System.out.println(profile.getNickname());
-                System.out.println(profile.getProfile_image());
-            } while (false);
+        } else if (!code.isEmpty()){
+            User user = userService.getUser(code);
+            if (user != null) {
+                model.addAttribute("user", user);
+            } else {
+                System.out.println("failed to get user information from the authtoken");
+            }
         }
 
         return TEMPLATE_HOME;
