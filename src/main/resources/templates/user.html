@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home</title>
+    <title>Chats</title>
     <script src="https://kit.fontawesome.com/f751ee37da.js" crossorigin="anonymous"></script>
     <script
         src="http://code.jquery.com/jquery-3.5.1.min.js"
@@ -14,43 +14,21 @@
 </head>
 <body>
     <user th:attr="data-id=${user?.id},data-nickname=${user?.nickname},data-profileimage=${user?.profile_image},data-name=${user?.name},data-area=${user?.area},data-manner=${user?.manner}"></user>
-    <div class="upmenu background-white">
-        <div class="upmenu__column">
-            <span>권선동</span>
-            <i class="fas fa-chevron-down"></i>
-        </div>
+    <div class="upmenu">
+        <div class="upmenu__column"><i class="fas fa-chevron-down"></i></div>
         <div class="upmenu__column">
             <i class="fas fa-search"></i>
             <i class="fas fa-sliders-h"></i>
             <i class="fas fa-bell"></i>
         </div>
     </div>
-    <div class="contents">
-        <div class="empty"></div>
-        <nav class="upnav">
-            <ul class="upnav__list">
-                <li class="upnav__list__item selected">중고거래</li>
-                <li class="upnav__list__item">동네생활</li>
-            </ul>
-        </nav>
-        <ul class="contents__list">
-            <a th:each="item:${list}" th:href="@{'/goods/'} + ${item.id}">
-                <li class="contents__list__item">
-                    <img class="contents__list__item__img" th:src="${item.img == '' ? '/img/goods/000_empty.png' : item.img}"/>
-                    <div class="contents__list__item__description">
-                        <div class="title"><span th:text="${item.title}"></span></div>
-                        <div class="areatime"><span th:text="${item.area} + ' · ' + ${item.timestamp}"></span></div>
-                        <div class="price"><span th:text="${item.price} + '원'">10,000원</span></div>
-                        <div class="chatliked">
-                            <i class="far fa-comment" th:if="${item.chat>0}" th:text="${item.chat}">1</i>
-                            <i class="far fa-heart" th:if="${item.like>0}" th:text="${item.like}">2</i>
-                        </div>
-                    </div>
-                </li>
-            </a>
+    <nav class="upnav">
+        <ul class="upnav__list">
+            <li class="upnav__list__item">중고거래</li>
+            <li class="upnav__list__item">동네생활</li>
         </ul>
-        <div class="empty"></div>
-    </div>
+    </nav>
+    <!-- contents go in here -->
     <nav class="downnav">
         <ul class="downnav__list">
             <li class="downnav__list__item"><a href="/goods">

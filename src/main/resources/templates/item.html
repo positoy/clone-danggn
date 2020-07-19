@@ -13,6 +13,7 @@
     <script src="/js/common.js"></script>
 </head>
 <body>
+    <user th:attr="data-id=${user?.id},data-nickname=${user?.nickname},data-profileimage=${user?.profile_image},data-name=${user?.name},data-area=${user?.area},data-manner=${user?.manner}"></user>
     <div class="upmenu" id="item">
         <div class="upmenu__column">
             <i class="fas fa-arrow-left" id="back-button"></i>
@@ -34,11 +35,11 @@
         </div>
         <div class="userinfo">
             <div class="userinfo__column" id="userpic">
-                <img th:src="${user.profile_image}">
+                <img th:src="${goodsuser.profile_image}">
             </div>
             <div class="userinfo__column" id="usertext">
-                <div class="userinfo__nameaddr__name" th:text="${user.nickname}">별하박</div>
-                <div class="userinfo_nameaddr__addr" th:text="${user.area}">수원시 영통구 영통2동</div>
+                <div class="userinfo__nameaddr__name" th:text="${goodsuser.nickname}">별하박</div>
+                <div class="userinfo_nameaddr__addr" th:text="${goodsuser.area}">수원시 영통구 영통2동</div>
             </div>
             <div class="userinfo__column" id="usertemp">
                 <img src="/img/mannertmep_368.jpeg">

@@ -14,6 +14,10 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+    public User getUserById(String userid) {
+        return userRepository.getUser(userid);
+    }
+
     public User getUser(String code) {
 
         boolean ret = false;

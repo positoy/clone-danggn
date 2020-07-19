@@ -56,12 +56,14 @@ public class GoodsController {
     }
 
     @GetMapping("/goods/{id}")
-    public String getGoods(@PathVariable String id, Model model) {
+    public String getGoods(@PathVariable String id, Model model, @RequestParam(defaultValue = "") String userid) {
         System.out.println(id);
         model.addAttribute("goods", goodsService.getGoods(id));
         System.out.println((Goods)model.getAttribute("goods"));
-        model.addAttribute("user", goodsService.getUserWithGoodsId(id));
+        model.addAttribute("goodsuser", goodsService.getUserWithGoodsId(id));
         System.out.println((User)model.getAttribute("user"));
+        if (!userid.isEmpty())
+            model.addAttribute("user", userService.getUserById(userid));
 
         if (model.getAttribute("goods") == null || model.getAttribute("user") == null) {
             System.out.println("goods or user is null");
