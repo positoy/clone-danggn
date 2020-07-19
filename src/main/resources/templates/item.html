@@ -34,10 +34,10 @@
         </div>
         <div class="userinfo">
             <div class="userinfo__column" id="userpic">
-                <img th:src="${user.img}">
+                <img th:src="${user.profile_image}">
             </div>
             <div class="userinfo__column" id="usertext">
-                <div class="userinfo__nameaddr__name" th:text="${user.name}">별하박</div>
+                <div class="userinfo__nameaddr__name" th:text="${user.nickname}">별하박</div>
                 <div class="userinfo_nameaddr__addr" th:text="${user.area}">수원시 영통구 영통2동</div>
             </div>
             <div class="userinfo__column" id="usertemp">

@@ -32,7 +32,7 @@ public class GoodsController {
     }
 
     @GetMapping("/goods")
-    public String getGoods(Model model, @RequestParam String code, @RequestParam String state) {
+    public String getGoods(Model model, @RequestParam(defaultValue = "") String code, @RequestParam(defaultValue = "") String state) {
 
         System.out.println("code : " + code);
         System.out.println("state : " + state);
