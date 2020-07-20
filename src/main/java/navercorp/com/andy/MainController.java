@@ -17,6 +17,7 @@ public class MainController {
     UserRepository userRepository;
 
     final String TEMPLATE_CATEGORY = "category";
+    final String TEMPLATE_WRITE = "write";
     final String TEMPLATE_CHAT = "chat";
     final String TEMPLATE_USER = "user";
 
@@ -25,6 +26,13 @@ public class MainController {
         if (!userid.isEmpty())
             model.addAttribute("user", userRepository.getUser(userid));
         return TEMPLATE_CATEGORY;
+    }
+
+    @GetMapping("/write")
+    public String getWrite(@RequestParam(defaultValue = "") String userid, Model model) {
+        if (!userid.isEmpty())
+            model.addAttribute("user", userRepository.getUser(userid));
+        return TEMPLATE_WRITE;
     }
 
     @GetMapping("/chat")

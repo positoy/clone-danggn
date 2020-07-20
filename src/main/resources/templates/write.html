@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
+    <user th:attr="data-id=${user?.id},data-nickname=${user?.nickname},data-profileimage=${user?.profile_image},data-name=${user?.name},data-area=${user?.area},data-manner=${user?.manner}"></user>
     <div class="upmenu background-white bottom-bar">
         <div class="upmenu__column">
             <i class="fas fa-arrow-left" id="back-button"></i>

@@ -66,9 +66,10 @@ window.onload = function() {
         console.log($("#write_form_pics").attr('action'));
         e.preventDefault();
         var formData = new FormData(this);
+        const userid = $user.attr("data-id");
 
         $.ajax({
-            url: $("#write_form_pics").attr('action'),
+            url: $("#write_form_pics").attr('action') + "?userid" + userid,
             type: 'POST',
             data: formData,
             success: function (response) {
