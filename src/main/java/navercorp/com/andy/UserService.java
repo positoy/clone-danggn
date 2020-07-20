@@ -49,13 +49,17 @@ public class UserService {
             return null;
         }
 
-        User user = userRepository.getOne(profile.getId());
-        logger.info(user.toString());
-        if (user == null) {
+        User user = null;
+        try {
+            user = userRepository.getOne(profile.getId());
+        } catch (Exception e) {
+            logger.warn("no user found from the db with id : " + profile.getId());
             user = new User(profile.getId(), profile.getNickname(), profile.getProfile_image(), profile.getName(),
                     token.getAccess_token(), token.getRefresh_token(), token.getToken_type(), token.getExpires_in(), "기본 지역", 368);
             userRepository.save(user);
         }
+
+        logger.info(user.toString());
 
         return user;
     }
