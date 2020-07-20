@@ -1,5 +1,8 @@
 package navercorp.com.andy.naver;
 
+import lombok.ToString;
+
+@ToString
 public class Profile {
     final public Long id;
     final public String name;

@@ -1,5 +1,8 @@
 package navercorp.com.andy.naver;
 
+import lombok.ToString;
+
+@ToString
 public class Token {
     final public String access_token;
     final public String refresh_token;

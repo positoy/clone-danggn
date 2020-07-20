@@ -28,14 +28,14 @@ public class GoodsService {
 
     List<Goods> getDummy() {
         List<Goods> list = goodsRepository.findAll();
-
-        long current_millis = new Timestamp(System.currentTimeMillis()).getTime();
-
-        for (int i=0; i<list.size(); i++) {
-            long item_millis = Long.parseLong(list.get(i).getTimestamp()) * 1000;
-            String smartTimestamp = Util.getSmartTimestamp(current_millis, item_millis);
-            list.get(i).setTimestamp(smartTimestamp);
-        }
+//
+//        long current_millis = new Timestamp(System.currentTimeMillis()).getTime();
+//
+//        for (int i=0; i<list.size(); i++) {
+//            long item_millis = Long.parseLong(list.get(i).getTimestamp()) * 1000;
+//            String smartTimestamp = Util.getSmartTimestamp(current_millis, item_millis);
+//            list.get(i).setTimestamp(smartTimestamp);
+//        }
         return list;
     }
 

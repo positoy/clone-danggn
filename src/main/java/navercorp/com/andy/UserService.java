@@ -34,12 +34,16 @@ public class UserService {
             if (token == null) {
                 logger.info("break due to null token");
                 break;
+            } else {
+                logger.info(token.toString());
             }
 
             profile = ProfileAPI.get(token.getAccess_token());
             if (profile == null) {
                 logger.info("break due to null profile");
                 break;
+            } else {
+                logger.info(profile.toString());
             }
 
         } while (false);
@@ -59,7 +63,7 @@ public class UserService {
             userRepository.save(user);
         }
 
-        logger.info(user.toString());
+        logger.info(user.getId().toString());
 
         return user;
     }

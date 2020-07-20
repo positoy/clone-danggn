@@ -22,6 +22,7 @@ public class Util {
             logger.warn("session has no user");
         } else {
             logger.info("session user : " + user.getId());
+            logger.info(user.getId().toString() + " nickname : " + user.getNickname());
             model.addAttribute("user", user);
         }
     }
