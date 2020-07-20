@@ -20,8 +20,8 @@ public class UserRepository {
         ArrayList<User> list = new ArrayList<>();
         list.add(new User("unknown", "안알랴줌", "/img/user/0.png", "알랴줌", "", "", "", "", "달나라", 368));
         list.add(new User("0", "앤디", "/img/user/0.png", "앤", "", "", "", "", "광교", 368));
-        list.add(new User("1", "브리트니", "/img/user/1.png", "브리", "", "", "", "", "수지", 368));
-        list.add(new User("2", "디미트리", "/img/user/2.png", "디미", "", "", "", "", "판교", 368));
+        list.add(new User("1", "브리트니", "/img/user/1.jpg", "브리", "", "", "", "", "수지", 368));
+        list.add(new User("2", "디미트리", "/img/user/2.jpg", "디미", "", "", "", "", "판교", 368));
 
         list.forEach(user -> {
             users.put(user.getId(), user);

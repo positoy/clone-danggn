@@ -26,41 +26,29 @@ public class MainController {
 
     @GetMapping("/category")
     public String getCategory(@RequestParam(defaultValue = "") String userid, Model model, HttpServletRequest request) {
-//        if (!userid.isEmpty())
-//            model.addAttribute("user", userRepository.getUser(userid));
 
         Util.updateModelUserFromSession(request, model);
-
         return TEMPLATE_CATEGORY;
     }
 
     @GetMapping("/write")
     public String getWrite(@RequestParam(defaultValue = "") String userid, Model model, HttpServletRequest request) {
-//        if (!userid.isEmpty())
-//            model.addAttribute("user", userRepository.getUser(userid));
 
         Util.updateModelUserFromSession(request, model);
-
         return TEMPLATE_WRITE;
     }
 
     @GetMapping("/chat")
     public String getChat(@RequestParam(defaultValue = "")String userid, Model model, HttpServletRequest request) {
-//        if (!userid.isEmpty())
-//            model.addAttribute("user", userRepository.getUser(userid));
 
         Util.updateModelUserFromSession(request, model);
-
         return TEMPLATE_CHAT;
     }
 
     @GetMapping("/user")
     public String getUser(@RequestParam(defaultValue = "")String userid, Model model, HttpServletRequest request) {
-//        if (!userid.isEmpty())
-//            model.addAttribute("user", userRepository.getUser(userid));
 
         Util.updateModelUserFromSession(request, model);
-
         return TEMPLATE_USER;
     }
 }
