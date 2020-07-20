@@ -11,10 +11,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 @Service
 public class UserService {
 
     final static Logger logger = LoggerFactory.getLogger(UserService.class);
+
+    @PersistenceContext
+    EntityManager entityManager;
 
     @Autowired
     UserRepository userRepository;
@@ -27,6 +33,7 @@ public class UserService {
             logger.warn("not found with userid : " + userid, e.getMessage());
         }
 
+        entityManager.detach(user);
         return user;
     }
 
@@ -70,6 +77,7 @@ public class UserService {
             user = userRepository.save(user);
         }
 
+        entityManager.detach(user);
         logger.info(user.getId().toString());
 
         return user;
