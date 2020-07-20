@@ -55,6 +55,7 @@ public class GoodsController {
                 User user = userService.getUser(code);
                 if (user != null) {
                     logger.info("naver login successful with authcode:" + code + " , userid:" + user.getId());
+                    model.addAttribute("newlogin", user.getId());
                     request.getSession().setAttribute("user", user);
                 } else {
                     logger.warn("naver login failed");

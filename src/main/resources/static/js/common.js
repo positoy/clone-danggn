@@ -8,6 +8,11 @@ window.onload = function() {
         const userid = $user.attr("data-id");
         console.log(userid);
 
+
+        var newlogin = $user.attr("data-newlogin");
+        if (newlogin != "" && newlogin != undefined)
+            $('.toast').fadeIn(400).delay(3000).fadeOut(400);
+
         $(".downnav__list__item a").each(function(index, item){
             if (userid == "" || userid === undefined) {
                 var isWriteMenu = ($(item).attr("href").indexOf("write") != -1);
