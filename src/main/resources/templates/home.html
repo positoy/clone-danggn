@@ -13,6 +13,7 @@
     <script src="/js/common.js"></script>
 </head>
 <body>
+    <user th:attr="data-id=${user?.id},data-nickname=${user?.nickname},data-profileimage=${user?.profile_image},data-name=${user?.name},data-area=${user?.area},data-manner=${user?.manner},data-newlogin=${newlogin}"></user>
     <div class="upmenu background-white">
         <div class="upmenu__column">
             <span>권선동</span>
@@ -25,6 +26,7 @@
         </div>
     </div>
     <div class="contents">
+        <div class='toast' style='display:none'>네이버 아이디로 로그인했습니다</div>
         <div class="empty"></div>
         <nav class="upnav">
             <ul class="upnav__list">
@@ -42,7 +44,7 @@
                         <div class="price"><span th:text="${item.price} + '원'">10,000원</span></div>
                         <div class="chatliked">
                             <i class="far fa-comment" th:if="${item.chat>0}" th:text="${item.chat}">1</i>
-                            <i class="far fa-heart" th:if="${item.like>0}" th:text="${item.like}">2</i>
+                            <i class="far fa-heart" th:if="${item.liked>0}" th:text="${item.liked}">2</i>
                         </div>
                     </div>
                 </li>
@@ -58,25 +60,25 @@
                     <div class="downnav__list__item__menubox__name">홈</div>
                 </div>
             </a></li>
-            <li class="downnav__list__item"><a href="/category.html">
+            <li class="downnav__list__item"><a href="/category">
                 <div class="downnav__list__item__menubox">
                     <i class="fas fa-bars"></i>
                     <div class="downnav__list__item__menubox__name">카테고리</div>
                 </div>
             </a></li>
-            <li class="downnav__list__item"><a href="/write.html">
+            <li class="downnav__list__item"><a href="/write">
                 <div class="downnav__list__item__menubox">
                     <i class="fas fa-pencil-alt"></i>
                     <div class="downnav__list__item__menubox__name">글쓰기</div>
                 </div>
             </a></li>
-            <li class="downnav__list__item"><a href="/chat.html">
+            <li class="downnav__list__item"><a href="/chat">
                 <div class="downnav__list__item__menubox">
                     <i class="far fa-comments"></i>
                     <div class="downnav__list__item__menubox__name">채팅</div>
                 </div>
             </a></li>
-            <li class="downnav__list__item"><a href="/user.html">
+            <li class="downnav__list__item"><a href="/user">
                 <div class="downnav__list__item__menubox">
                     <i class="far fa-user"></i>
                     <div class="downnav__list__item__menubox__name">나의 당근</div>

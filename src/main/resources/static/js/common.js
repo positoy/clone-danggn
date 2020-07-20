@@ -1,5 +1,29 @@
 window.onload = function() {
-    console.log("onload complete")
+    console.log("onload complete");
+
+    (function(){
+        $user = $("user");
+
+        var newlogin = $user.attr("data-newlogin");
+        console.log(newlogin)
+        if (newlogin != "" && newlogin != undefined)
+            $('.toast').fadeIn(400).delay(3000).fadeOut(400);
+
+        const userid = $user.attr("data-id");
+        console.log(userid);
+        var naver_login_uri = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=AlS3TCLxJYn7SNPp75LE&state=hello&redirect_uri=";
+        naver_login_uri = naver_login_uri + encodeURIComponent("http://" + window.location.hostname + ":8080/goods");
+        console.log(naver_login_uri);
+        $(".downnav__list__item a").each(function(index, item){
+            if (userid == "" || userid === undefined) {
+                var isWriteMenu = ($(item).attr("href").indexOf("write") != -1);
+                var isChatMenu = ($(item).attr("href").indexOf("chat") != -1);
+                var isUserMenu = ($(item).attr("href").indexOf("user") != -1);
+                if (isWriteMenu || isChatMenu || isUserMenu)
+                    $(item).attr("href", naver_login_uri);
+            }
+        })
+    })();
 
     $("#write_price").keypress(function(event){
         console.log("onkeypress" + event.keyCode);
@@ -45,9 +69,10 @@ window.onload = function() {
         console.log($("#write_form_pics").attr('action'));
         e.preventDefault();
         var formData = new FormData(this);
+        const userid = $user.attr("data-id");
 
         $.ajax({
-            url: $("#write_form_pics").attr('action'),
+            url: $("#write_form_pics").attr('action') + "?userid" + userid,
             type: 'POST',
             data: formData,
             success: function (response) {

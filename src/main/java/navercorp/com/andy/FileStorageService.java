@@ -7,12 +7,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class FileStorageService{
+
+    final static Logger logger = LoggerFactory.getLogger(FileStorageService.class);
 
     URL classpath = ClassLoader.getSystemResource("");
     Path img_goods_directory;
@@ -22,8 +27,8 @@ public class FileStorageService{
         img_goods_directory = Paths.get(classpath.getFile() + "static/img/goods");
         img_user_directory = Paths.get(classpath.getFile() + "static/img/user");
 
-        System.out.println(img_goods_directory.toString());
-        System.out.println(img_user_directory.toString());
+        logger.info(img_goods_directory.toString());
+        logger.info(img_user_directory.toString());
 
         File goodsDirectory = new File(img_goods_directory.toString());
         File userDirectory = new File(img_user_directory.toString());
@@ -37,8 +42,12 @@ public class FileStorageService{
 
     public String generateFileName(MultipartFile file, String timestamp, String userid) {
         String filename = StringUtils.cleanPath(timestamp + "_" + userid + "_" + file.getOriginalFilename());
-        System.out.println("filename : " + filename);
+        logger.info("filename : " + filename);
         return filename;
+    }
+
+    public String generateGoodsDefaultImgPath() {
+        return "/img/goods/000_empty.png";
     }
 
     public String generateGoodsImgPath(String filename) {
@@ -62,7 +71,7 @@ public class FileStorageService{
             }
         }
         catch (Exception e) {
-            System.out.println("Failed to store file " + e.getMessage());
+            logger.info("Failed to store file " + e.getMessage());
         }
     }
 
@@ -79,7 +88,7 @@ public class FileStorageService{
             }
         }
         catch (Exception e) {
-            System.out.println("Failed to store file " + e.getMessage());
+            logger.info("Failed to store file " + e.getMessage());
         }
     }
 }

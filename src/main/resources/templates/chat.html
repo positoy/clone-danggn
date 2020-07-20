@@ -13,20 +13,16 @@
     <script src="/js/common.js"></script>
 </head>
 <body>
-    <div class="upmenu">
-        <div class="upmenu__column"><i class="fas fa-chevron-down"></i></div>
+    <user th:attr="data-id=${user?.id},data-nickname=${user?.nickname},data-profileimage=${user?.profile_image},data-name=${user?.name},data-area=${user?.area},data-manner=${user?.manner}"></user>
+    <div class="upmenu background-white bottom-bar">
         <div class="upmenu__column">
-            <i class="fas fa-search"></i>
-            <i class="fas fa-sliders-h"></i>
-            <i class="fas fa-bell"></i>
+            <span id="title">채팅</span>
         </div>
     </div>
-    <nav class="upnav">
-        <ul class="upnav__list">
-            <li class="upnav__list__item">중고거래</li>
-            <li class="upnav__list__item">동네생활</li>
-        </ul>
-    </nav>
+    <div class="contents">
+        <div class="empty"></div>
+        <div class="empty"></div>
+    </div>
     <!-- contents go in here -->
     <nav class="downnav">
         <ul class="downnav__list">
@@ -36,7 +32,7 @@
                     <div class="downnav__list__item__menubox__name">홈</div>
                 </div>
             </a></li>
-            <li class="downnav__list__item"><a href="/category.html">
+            <li class="downnav__list__item"><a href="/category">
                 <div class="downnav__list__item__menubox">
                     <i class="fas fa-bars"></i>
                     <div class="downnav__list__item__menubox__name">카테고리</div>
@@ -48,13 +44,13 @@
                     <div class="downnav__list__item__menubox__name">글쓰기</div>
                 </div>
             </a></li>
-            <li class="downnav__list__item"><a href="/chat.html">
+            <li class="downnav__list__item"><a href="/chat">
                 <div class="downnav__list__item__menubox">
                     <i class="far fa-comments"></i>
                     <div class="downnav__list__item__menubox__name">채팅</div>
                 </div>
             </a></li>
-            <li class="downnav__list__item"><a href="/user.html">
+            <li class="downnav__list__item"><a href="/user">
                 <div class="downnav__list__item__menubox">
                     <i class="far fa-user"></i>
                     <div class="downnav__list__item__menubox__name">나의 당근</div>

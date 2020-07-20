@@ -1,11 +1,31 @@
 package navercorp.com.andy;
 
+import navercorp.com.andy.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.ui.Model;
+
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
 public class Util {
+
+    final static Logger logger = LoggerFactory.getLogger(Util.class);
+
+    public static void updateModelUserFromSession(HttpServletRequest request, Model model) {
+
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null) {
+            logger.warn("session has no user");
+        } else {
+            logger.info("session user : " + user.getId());
+            logger.info(user.getId().toString() + " nickname : " + user.getNickname());
+            model.addAttribute("user", user);
+        }
+    }
 
     public static boolean isOnTheSameDate(Date date) {
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Asia/Seoul"));
