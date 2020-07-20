@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 
 @Controller
@@ -39,25 +40,38 @@ public class GoodsController {
     }
 
     @GetMapping("/goods")
-    public String getGoods(Model model, @RequestParam(defaultValue = "") String code, @RequestParam(defaultValue = "") String state) {
+    public String getGoods(Model model, @RequestParam(defaultValue = "") String code, @RequestParam(defaultValue = "") String state, HttpServletRequest request) {
 
         logger.info("code : " + code);
         logger.info("state : " + state);
 
         model.addAttribute("list", goodsService.getDummy());
 
-        if (!state.equals(NaverConfiguration.VAL.state)) {
-            logger.info("/goods - (not login)");
-        } else if (!code.isEmpty()){
-            logger.info("/goods - (naver login : authcode " + code + ")");
-            model.addAttribute("user", userService.getUser(code));
+        if (!state.isEmpty() || !code.isEmpty()) {
+
+            if (state.equals(NaverConfiguration.VAL.state) && !code.isEmpty()) {
+                logger.info("valid naver login try");
+
+                User user = userService.getUser(code);
+                if (user != null) {
+                    logger.info("naver login successful with authcode:" + code + " , userid:" + user.getId());
+                    request.getSession().setAttribute("user", user);
+                } else {
+                    logger.warn("naver login failed");
+                }
+
+            } else {
+                logger.warn("invalid naver login try");
+            }
         }
+
+        Util.updateModelUserFromSession(request, model);
 
         return TEMPLATE_HOME;
     }
 
     @GetMapping("/goods/{id}")
-    public String getGoods(@PathVariable String id, Model model, @RequestParam(defaultValue = "") String userid) {
+    public String getGoods(@PathVariable String id, Model model, @RequestParam(defaultValue = "") String userid, HttpServletRequest request) {
         logger.info(id);
         Goods good = goodsService.getGoods(id);
         User goodsuser = goodsService.getUserWithGoodsId(id);
@@ -73,20 +87,25 @@ public class GoodsController {
 
         model.addAttribute("goods", good);
         model.addAttribute("goodsuser", goodsuser);
-        if (!userid.isEmpty())
-            model.addAttribute("user", userService.getUserById(userid));
+
+        Util.updateModelUserFromSession(request, model);
+
+//
+//        if (!userid.isEmpty())
+//            model.addAttribute("user", userService.getUserById(userid));
 
         return TEMPLATE_ITEM;
     }
 
     @PostMapping("/goods")
     @ResponseBody
-    public String postGoods(Goods good, @RequestParam(defaultValue = "") String userid, @RequestParam MultipartFile pics, RedirectAttributes redirectAttributes) {
+    public String postGoods(Goods good, @RequestParam MultipartFile pics, RedirectAttributes redirectAttributes, HttpServletRequest request, Model model) {
         logger.info(good.toString());
-        good = goodsService.refineGoods(good, userid);
+        User user = (User) request.getSession().getAttribute("user");
+        good = goodsService.refineGoods(good, user);
 
         if (!pics.getOriginalFilename().isEmpty()) {
-            String filename = fileService.generateFileName(pics, good.getTimestamp(), good.getUserid());
+            String filename = fileService.generateFileName(pics, good.getTimestamp(), user.getId());
             fileService.storeGoodsImg(pics, filename);
 
             ArrayList<String> imgs = new ArrayList<>();
@@ -97,6 +116,8 @@ public class GoodsController {
 
         logger.info(good.toString());
         goodsService.saveGoods(good);
+
+        Util.updateModelUserFromSession(request, model);
 
         return REDIRECT_TO_HOME;
     }

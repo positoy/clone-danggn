@@ -1,5 +1,6 @@
 package navercorp.com.andy;
 
+import navercorp.com.andy.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class MainController {
@@ -22,30 +25,42 @@ public class MainController {
     final String TEMPLATE_USER = "user";
 
     @GetMapping("/category")
-    public String getCategory(@RequestParam(defaultValue = "") String userid, Model model) {
-        if (!userid.isEmpty())
-            model.addAttribute("user", userRepository.getUser(userid));
+    public String getCategory(@RequestParam(defaultValue = "") String userid, Model model, HttpServletRequest request) {
+//        if (!userid.isEmpty())
+//            model.addAttribute("user", userRepository.getUser(userid));
+
+        Util.updateModelUserFromSession(request, model);
+
         return TEMPLATE_CATEGORY;
     }
 
     @GetMapping("/write")
-    public String getWrite(@RequestParam(defaultValue = "") String userid, Model model) {
-        if (!userid.isEmpty())
-            model.addAttribute("user", userRepository.getUser(userid));
+    public String getWrite(@RequestParam(defaultValue = "") String userid, Model model, HttpServletRequest request) {
+//        if (!userid.isEmpty())
+//            model.addAttribute("user", userRepository.getUser(userid));
+
+        Util.updateModelUserFromSession(request, model);
+
         return TEMPLATE_WRITE;
     }
 
     @GetMapping("/chat")
-    public String getChat(@RequestParam(defaultValue = "")String userid, Model model) {
-        if (!userid.isEmpty())
-            model.addAttribute("user", userRepository.getUser(userid));
+    public String getChat(@RequestParam(defaultValue = "")String userid, Model model, HttpServletRequest request) {
+//        if (!userid.isEmpty())
+//            model.addAttribute("user", userRepository.getUser(userid));
+
+        Util.updateModelUserFromSession(request, model);
+
         return TEMPLATE_CHAT;
     }
 
     @GetMapping("/user")
-    public String getUser(@RequestParam(defaultValue = "")String userid, Model model) {
-        if (!userid.isEmpty())
-            model.addAttribute("user", userRepository.getUser(userid));
+    public String getUser(@RequestParam(defaultValue = "")String userid, Model model, HttpServletRequest request) {
+//        if (!userid.isEmpty())
+//            model.addAttribute("user", userRepository.getUser(userid));
+
+        Util.updateModelUserFromSession(request, model);
+
         return TEMPLATE_USER;
     }
 }

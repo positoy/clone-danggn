@@ -38,10 +38,10 @@ public class GoodsService {
         return list;
     }
 
-    Goods refineGoods(Goods good, String userid) {
+    Goods refineGoods(Goods good, User user) {
         good.setTimestamp(String.valueOf(new Timestamp(System.currentTimeMillis()).getTime() / 1000));
-        good.setUserid(userid.isEmpty() ? "unknown" : userid);
-        good.setId(good.getTimestamp() + "_" + good.getUserid());
+        good.setUserid(user.getId());
+        good.setId(good.getTimestamp() + "_" + user.getId());
         return good;
     }
 
