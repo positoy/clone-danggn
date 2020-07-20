@@ -59,17 +59,23 @@ public class GoodsController {
     @GetMapping("/goods/{id}")
     public String getGoods(@PathVariable String id, Model model, @RequestParam(defaultValue = "") String userid) {
         logger.info(id);
-        model.addAttribute("goods", goodsService.getGoods(id));
-        logger.info(((Goods)model.getAttribute("goods")).toString());
-        model.addAttribute("goodsuser", goodsService.getUserWithGoodsId(id));
-        logger.info(((User)model.getAttribute("user")).toString());
+        Goods good = goodsService.getGoods(id);
+        User goodsuser = goodsService.getUserWithGoodsId(id);
+
+        if (good == null || goodsuser == null) {
+            logger.info("goods or user is null");
+
+            return REDIRECT_TO_HOME;
+        }
+
+        logger.info(good.toString());
+        logger.info(goodsuser.toString());
+
+        model.addAttribute("goods", good);
+        model.addAttribute("goodsuser", goodsuser);
         if (!userid.isEmpty())
             model.addAttribute("user", userService.getUserById(userid));
 
-        if (model.getAttribute("goods") == null || model.getAttribute("user") == null) {
-            logger.info("goods or user is null");
-            return REDIRECT_TO_HOME;
-        }
         return TEMPLATE_ITEM;
     }
 
