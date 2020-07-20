@@ -30,16 +30,16 @@ public class User {
     String name;
 
     // Naver Token API
-    @Column(length = 100)
+    @Column(length = 200)
     String access_token;
 
-    @Column(length = 100)
+    @Column(length = 200)
     String refresh_token;
 
-    @Column(length = 100)
+    @Column(length = 200)
     String token_type;
 
-    @Column(length = 100)
+    @Column(length = 200)
     String expires_in;
 
     // couldn't set yet

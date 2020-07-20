@@ -5,10 +5,10 @@
 --     nickname VARCHAR(20) default NULL,
 --     profile_image VARCHAR(100) default NULL,
 --     name VARCHAR(20) default NULL,
---     access_token VARCHAR(100)  default NULL,
---     refresh_token VARCHAR(100) default NULL,
---     token_type VARCHAR(100) default NULL,
---     expires_in VARCHAR(100) default NULL,
+--     access_token VARCHAR(200)  default NULL,
+--     refresh_token VARCHAR(200) default NULL,
+--     token_type VARCHAR(200) default NULL,
+--     expires_in VARCHAR(200) default NULL,
 --     area VARCHAR(20) default NULL,
 --     manner INT default 368
 -- );

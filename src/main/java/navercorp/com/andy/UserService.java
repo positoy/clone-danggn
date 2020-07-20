@@ -20,7 +20,14 @@ public class UserService {
     UserRepository userRepository;
 
     public User getUserById(Long userid) {
-        return userRepository.getOne(userid);
+        User user = null;
+        try {
+            user = userRepository.findById(userid).get();
+        } catch (Exception e) {
+            logger.warn("not found with userid : " + userid, e.getMessage());
+        }
+
+        return user;
     }
 
     public User getUser(String code) {
@@ -55,12 +62,12 @@ public class UserService {
 
         User user = null;
         try {
-            user = userRepository.getOne(profile.getId());
+            user = userRepository.findById(profile.getId()).get();
         } catch (Exception e) {
-            logger.warn("no user found from the db with id : " + profile.getId());
+            logger.warn("not found with userid : " + profile.getId());
             user = new User(profile.getId(), profile.getNickname(), profile.getProfile_image(), profile.getName(),
-                    token.getAccess_token(), token.getRefresh_token(), token.getToken_type(), token.getExpires_in(), "기본 지역", 368);
-            userRepository.save(user);
+                    token.getAccess_token(), token.getRefresh_token(), token.getToken_type(), token.getExpires_in(), "전체", 368);
+            user = userRepository.save(user);
         }
 
         logger.info(user.getId().toString());

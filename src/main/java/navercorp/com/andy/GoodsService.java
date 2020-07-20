@@ -40,9 +40,15 @@ public class GoodsService {
     }
 
     Goods refineGoods(Goods good, User user) {
+
         good.setTimestamp(String.valueOf(new Timestamp(System.currentTimeMillis()).getTime() / 1000));
-        good.setUserid(user.getId());
         good.setId(good.getTimestamp() + "_" + user.getId());
+        good.setUserid(user.getId());
+        good.setArea(user.getArea());
+
+        if (good.getLiked() == null) good.setLiked(0);
+        if (good.getChat() == null) good.setChat(0);
+
         return good;
     }
 
@@ -51,22 +57,36 @@ public class GoodsService {
     }
 
     Goods getGoods(String id) {
-        Goods good = goodsRepository.getOne(id);
-        logger.info(good.toString());
+        Goods good = null;
+        try {
+            good = goodsRepository.findById(id).get();
+        } catch (Exception e) {
+            logger.warn("not found with goodsid : " + id, e.getMessage());
+            return null;
+        }
         long current_millis = new Timestamp(System.currentTimeMillis()).getTime();
         long item_millis = Long.parseLong(good.getTimestamp()) * 1000;
         good.setTimestamp(Util.getSmartTimestamp(current_millis, item_millis));
-        logger.info(goodsRepository.getOne(id).toString());
         return good;
     }
 
-    User getUser(Long id) {
-        return userRepository.getOne(id);
-    }
-
     User getUserWithGoodsId(String goodsid) {
-        Goods good = goodsRepository.getOne(goodsid);
-        return userRepository.getOne(good.getUserid());
+        Goods good = null;
+        try {
+            good = goodsRepository.findById(goodsid).get();
+        } catch (Exception e) {
+            logger.warn("not found with goodsid : " + goodsid, e.getMessage());
+            return null;
+        }
+
+        User user = null;
+        try {
+            user = userRepository.findById(good.getUserid()).get();
+        } catch (Exception e) {
+            logger.warn("not found with userid : " + good.getUserid(), e.getMessage());
+            return null;
+        }
+        return user;
     }
 
 }
