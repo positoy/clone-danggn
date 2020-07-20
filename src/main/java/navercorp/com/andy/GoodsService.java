@@ -1,16 +1,17 @@
 package navercorp.com.andy;
 
+import navercorp.com.andy.DAO.GoodsRepository;
+import navercorp.com.andy.DAO.UserRepository;
 import navercorp.com.andy.model.Goods;
-import navercorp.com.andy.model.GoodsListItem;
 import navercorp.com.andy.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class GoodsService {
@@ -22,11 +23,11 @@ public class GoodsService {
 
     @Autowired
     UserRepository userRepository;
-    private Goods good;
+
     private ArrayList<String> files;
 
-    ArrayList<GoodsListItem> getDummy() {
-        ArrayList<GoodsListItem> list = goodsRepository.getDummy();
+    List<Goods> getDummy() {
+        List<Goods> list = goodsRepository.findAll();
 
         long current_millis = new Timestamp(System.currentTimeMillis()).getTime();
 
@@ -49,31 +50,23 @@ public class GoodsService {
         goodsRepository.save(good);
     }
 
-    void setImgs(Goods good, ArrayList<String> imgs) {
-        good.setImgs(imgs);
-    }
-
     Goods getGoods(String id) {
-        Goods good = null;
-        try {
-            good = (Goods) goodsRepository.getGoods(id).clone();
-        } catch (CloneNotSupportedException e) {
-            logger.info(e.getMessage());
-            return null;
-        }
+        Goods good = goodsRepository.getOne(id);
+        logger.info(good.toString());
         long current_millis = new Timestamp(System.currentTimeMillis()).getTime();
         long item_millis = Long.parseLong(good.getTimestamp()) * 1000;
         good.setTimestamp(Util.getSmartTimestamp(current_millis, item_millis));
+        logger.info(goodsRepository.getOne(id).toString());
         return good;
     }
 
     User getUser(Long id) {
-        return userRepository.getUser(id);
+        return userRepository.getOne(id);
     }
 
     User getUserWithGoodsId(String goodsid) {
-        Goods good = goodsRepository.getGoods(goodsid);
-        return userRepository.getUser(good.getUserid());
+        Goods good = goodsRepository.getOne(goodsid);
+        return userRepository.getOne(good.getUserid());
     }
 
 }

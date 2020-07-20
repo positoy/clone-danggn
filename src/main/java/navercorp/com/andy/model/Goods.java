@@ -2,6 +2,8 @@ package navercorp.com.andy.model;
 
 import lombok.*;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.ArrayList;
@@ -9,50 +11,43 @@ import java.util.ArrayList;
 @Data
 @NoArgsConstructor @AllArgsConstructor
 @ToString
+@Entity
 @Table(name ="goods")
 public class Goods implements Cloneable {
     // GoodsListItem
     @Id
+    @Column(length = 30)
     String id;
+
+    @Column(length = 50)
     String title;
+
+    @Column(length = 20)
     String area;
+
+    @Column(length = 20)
     String timestamp;
-    int price;
-    int chat;
-    int liked;
+
+    @Column
+    Integer price;
+
+    @Column
+    Integer chat;
+
+    @Column
+    Integer liked;
+
     // one item in the GoodsListItem
-    ArrayList<String> imgs;
+    @Column(length = 100)
+    String img;
+
     // only in the Goods
+    @Column(length = 30)
     String category;
+
+    @Column(length = 300)
     String body;
+
+    @Column
     Long userid;
-
-    public Goods(String id, String title, String area, String timestamp, int price, int chat, int liked, String img, String category, String body, Long userid) {
-        this.id = id;
-        this.title = title;
-        this.area = area;
-        this.timestamp = timestamp;
-        this.price = price;
-        this.chat = chat;
-        this.liked = liked;
-        this.imgs = new ArrayList<>();
-        if (!img.isEmpty()) {
-            imgs.add(img);
-        }
-        this.category = category;
-        this.body = body;
-        this.userid = userid;
-    }
-
-    public GoodsListItem getListItem() {
-        String imgUrl = imgs.size() != 0 ? imgs.get(0) : "";
-        return new GoodsListItem(id, title, area, timestamp, price, chat, liked, imgUrl);
-    }
-
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        Goods good = (Goods) super.clone();
-        good.imgs = (ArrayList<String>) this.imgs.clone();
-        return good;
-    }
 }

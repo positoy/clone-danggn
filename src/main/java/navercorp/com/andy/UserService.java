@@ -1,5 +1,6 @@
 package navercorp.com.andy;
 
+import navercorp.com.andy.DAO.UserRepository;
 import navercorp.com.andy.model.User;
 import navercorp.com.andy.naver.AccessTokenAPI;
 import navercorp.com.andy.naver.Profile;
@@ -19,7 +20,7 @@ public class UserService {
     UserRepository userRepository;
 
     public User getUserById(Long userid) {
-        return userRepository.getUser(userid);
+        return userRepository.getOne(userid);
     }
 
     public User getUser(String code) {
@@ -48,11 +49,12 @@ public class UserService {
             return null;
         }
 
-        User user = userRepository.getUser(profile.getId());
+        User user = userRepository.getOne(profile.getId());
+        logger.info(user.toString());
         if (user == null) {
             user = new User(profile.getId(), profile.getNickname(), profile.getProfile_image(), profile.getName(),
                     token.getAccess_token(), token.getRefresh_token(), token.getToken_type(), token.getExpires_in(), "기본 지역", 368);
-            userRepository.addUser(user);
+            userRepository.save(user);
         }
 
         return user;

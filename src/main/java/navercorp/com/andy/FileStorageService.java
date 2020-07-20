@@ -47,6 +47,10 @@ public class FileStorageService{
         return filename;
     }
 
+    public String generateGoodsDefaultImgPath() {
+        return "/img/goods/000_empty.png";
+    }
+
     public String generateGoodsImgPath(String filename) {
         return "/img/goods/" + filename;
     }

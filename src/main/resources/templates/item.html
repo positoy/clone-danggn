@@ -25,7 +25,7 @@
     </div>
     <div class="contents">
         <div class="itempicture">
-            <img th:src="${#lists.size(goods.imgs) == 1 ? goods.imgs[0] : '/img/goods/000_empty.png'}">
+            <img th:src="${goods.img}">
             <ul class="itempicture__list">
                 <li class="itempicture__list__item"><i class="fas fa-circle"></i></li>
                 <li class="itempicture__list__item"><i class="fas fa-circle"></i></li>

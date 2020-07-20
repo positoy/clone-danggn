@@ -10,10 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 
 @Controller
 public class GoodsController {
@@ -91,16 +89,12 @@ public class GoodsController {
 
         Util.updateModelUserFromSession(request, model);
 
-//
-//        if (!userid.isEmpty())
-//            model.addAttribute("user", userService.getUserById(userid));
-
         return TEMPLATE_ITEM;
     }
 
     @PostMapping("/goods")
     @ResponseBody
-    public String postGoods(Goods good, @RequestParam MultipartFile pics, RedirectAttributes redirectAttributes, HttpServletRequest request, Model model) {
+    public String postGoods(Goods good, @RequestParam MultipartFile pics, HttpServletRequest request, Model model) {
         logger.info(good.toString());
         User user = (User) request.getSession().getAttribute("user");
         good = goodsService.refineGoods(good, user);
@@ -109,10 +103,10 @@ public class GoodsController {
             String filename = fileService.generateFileName(pics, good.getTimestamp(), user.getId().toString());
             fileService.storeGoodsImg(pics, filename);
 
-            ArrayList<String> imgs = new ArrayList<>();
-            String filepath = fileService.generateGoodsImgPath(filename);
-            imgs.add(filepath);
-            goodsService.setImgs(good, imgs);
+            String img = fileService.generateGoodsImgPath(filename);
+            good.setImg(img);
+        } else {
+            good.setImg(fileService.generateGoodsDefaultImgPath());
         }
 
         logger.info(good.toString());
