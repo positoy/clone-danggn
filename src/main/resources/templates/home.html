@@ -44,7 +44,7 @@
                         <div class="price"><span th:text="${item.price} + '원'">10,000원</span></div>
                         <div class="chatliked">
                             <i class="far fa-comment" th:if="${item.chat>0}" th:text="${item.chat}">1</i>
-                            <i class="far fa-heart" th:if="${item.like>0}" th:text="${item.like}">2</i>
+                            <i class="far fa-heart" th:if="${item.liked>0}" th:text="${item.liked}">2</i>
                         </div>
                     </div>
                 </li>

@@ -15,7 +15,7 @@ public class GoodsListItem {
     String timestamp;
     int price;
     int chat;
-    int like;
+    int liked;
 // ArrayList in the Goods
     String img;
 }

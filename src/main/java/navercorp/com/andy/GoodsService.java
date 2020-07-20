@@ -67,7 +67,7 @@ public class GoodsService {
         return good;
     }
 
-    User getUser(String id) {
+    User getUser(Long id) {
         return userRepository.getUser(id);
     }
 

@@ -18,7 +18,7 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public User getUserById(String userid) {
+    public User getUserById(Long userid) {
         return userRepository.getUser(userid);
     }
 

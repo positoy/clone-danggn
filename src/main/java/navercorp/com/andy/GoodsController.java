@@ -106,7 +106,7 @@ public class GoodsController {
         good = goodsService.refineGoods(good, user);
 
         if (!pics.getOriginalFilename().isEmpty()) {
-            String filename = fileService.generateFileName(pics, good.getTimestamp(), user.getId());
+            String filename = fileService.generateFileName(pics, good.getTimestamp(), user.getId().toString());
             fileService.storeGoodsImg(pics, filename);
 
             ArrayList<String> imgs = new ArrayList<>();
