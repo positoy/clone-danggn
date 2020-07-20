@@ -2,17 +2,18 @@ window.onload = function() {
     console.log("onload complete");
 
     (function(){
-        var naver_login_uri = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=AlS3TCLxJYn7SNPp75LE&state=hello&&redirect_uri=";
-        naver_login_uri = naver_login_uri + encodeURIComponent("http://" + window.location.hostname + ":8080/goods");
         $user = $("user");
-        const userid = $user.attr("data-id");
-        console.log(userid);
-
 
         var newlogin = $user.attr("data-newlogin");
+        console.log(newlogin)
         if (newlogin != "" && newlogin != undefined)
             $('.toast').fadeIn(400).delay(3000).fadeOut(400);
 
+        const userid = $user.attr("data-id");
+        console.log(userid);
+        var naver_login_uri = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=AlS3TCLxJYn7SNPp75LE&state=hello&&redirect_uri=";
+        naver_login_uri = naver_login_uri + encodeURIComponent("http://" + window.location.hostname + ":8080/goods");
+        console.log(naver_login_uri);
         $(".downnav__list__item a").each(function(index, item){
             if (userid == "" || userid === undefined) {
                 var isWriteMenu = ($(item).attr("href").indexOf("write") != -1);
@@ -20,9 +21,6 @@ window.onload = function() {
                 var isUserMenu = ($(item).attr("href").indexOf("user") != -1);
                 if (isWriteMenu || isChatMenu || isUserMenu)
                     $(item).attr("href", naver_login_uri);
-            } else {
-                var nowHref = $(item).attr("href");
-                $(item).attr("href", nowHref + "?userid=" + userid);
             }
         })
     })();
