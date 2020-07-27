@@ -33,8 +33,9 @@ Spring Boot 와 H2 인메모리 데이터베이스를 활용하고 JPA 를 적�
 
 서비스파일 만들기
 
-    sudo vim /etc/systemd/system/spring.service
-    
+    sudo vim /usr/lib/systemd/system/spring.service
+    sudo systemctl start spring
+
 파일내용
 
     [Unit]
